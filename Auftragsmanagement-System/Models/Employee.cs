@@ -15,6 +15,7 @@ namespace Auftragsmanagement_System.Models
         private Title title;
         private string area;
         private bool isActive;
+        private Int32 addressID;
         private Address address;
 
         public int Id
@@ -63,6 +64,12 @@ namespace Auftragsmanagement_System.Models
         {
             get { return address; }
             set { address = value; }
+        }
+
+        public int AddressId
+        {
+            get { return addressID; }
+            set { addressID = value; }
         }
     }
 }

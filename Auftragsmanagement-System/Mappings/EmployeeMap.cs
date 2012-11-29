@@ -18,10 +18,8 @@ namespace Auftragsmanagement_System.Mappings
             Map(x => x.Title).CustomType<Title>().Not.Nullable();
             Map(x => x.Area).Length(10);
             Map(x => x.IsActive).Not.Nullable();
-            Component(x => x.Address, a =>
-                                          {
-                                              Table("Addresses");
-                                          }); //Fragen, wie man hier einen Join macht.
+            Map(x => x.AddressId);
+            References<Address>(x => x.Address, "AddressId");
 
         }
     }
