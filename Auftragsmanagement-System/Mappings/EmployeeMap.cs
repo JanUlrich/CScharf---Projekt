@@ -18,7 +18,7 @@ namespace Auftragsmanagement_System.Mappings
             Map(x => x.Title).CustomType<Title>().Not.Nullable();
             Map(x => x.Area).Length(10);
             Map(x => x.IsActive).Not.Nullable();
-            Map(x => x.AddressId);
+            //Map(x => x.AddressId);
             References<Address>(x => x.Address, "AddressId");
 
         }

@@ -8,15 +8,15 @@ using FluentNHibernate.Mapping;
 
 namespace Auftragsmanagement_System.Mappings
 {
-    class AddressMap : ClassMap<Address>
+    class CityMap : ClassMap<City>
     { 
-        public AddressMap()
+        public CityMap()
         {
-            Table("Adresses");
+            Table("Cities");
             Id(x => x.Id).Not.Nullable();
-            Map(x => x.Street).Length(100);
-            Map(x => x.StreetNumber).Length(5);
-            References<City>(x => x.City, "CityId");
+            Map(x => x.PostalCode).Length(10).Not.Nullable();
+            Map(x => x.Name).Length(100).Not.Nullable();
+            References<Country>(x => x.Country, "CountryId");
 
         }
     }

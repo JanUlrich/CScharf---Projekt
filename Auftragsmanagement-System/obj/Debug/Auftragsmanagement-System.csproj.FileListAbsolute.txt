@@ -20,7 +20,7 @@ F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagemen
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\bin\Debug\Iesi.Collections.pdb
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\bin\Debug\Iesi.Collections.xml
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Auftragsmanagement-System_Content.g.cs
-F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Mitarbeiterverwaltung\View\UserControl1.baml
-F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Mitarbeiterverwaltung\View\UserControl1.g.cs
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\MainWindow.baml
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\MainWindow.g.cs
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.baml
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.g.cs

@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Auftragsmanagement_System.Framework;
+using Auftragsmanagement_System.Mitarbeiterverwaltung.Controller;
+using Auftragsmanagement_System.Mitarbeiterverwaltung.View;
 using Auftragsmanagement_System.Models;
 
 namespace Auftragsmanagement_System
@@ -26,11 +28,7 @@ namespace Auftragsmanagement_System
         public MainWindow()
         {
             InitializeComponent();
-            var mCustomerRepository = new Repository<Employee>(@"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db"); //TODO: hier den absoluten Verweis ersetzen
-            foreach (var test in mCustomerRepository.GetAll())
-            {
-                textBox.Text = textBox.Text + "\n"+ test.Address.Street;
-            }
+            contentView.Content = new MitarbeiterverwaltungController().Initialize();
         }
     }
 }

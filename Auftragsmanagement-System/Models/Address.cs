@@ -11,7 +11,8 @@ namespace Auftragsmanagement_System.Models
         private Int32 id;
         private string street;
         private string streetNumber;
-        private Int32 cityId;
+        //private Int32 cityId;
+        private City city;
 
         public int Id
         {
@@ -31,10 +32,10 @@ namespace Auftragsmanagement_System.Models
             set { streetNumber = value; }
         }
 
-        public int CityId
+        public City City
         {
-            get { return cityId; }
-            set { cityId = value; }
+            get { return city; }
+            set { city = value; }
         }
     }
 }

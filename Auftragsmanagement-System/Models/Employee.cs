@@ -3,9 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auftragsmanagement_System.Framework;
 
 namespace Auftragsmanagement_System.Models
 {
+    public enum Title
+    {   [StringValue("")]
+        keinTitel = 0,
+        [StringValue("Dipl.-Ing.")]
+        Dipl_Ing = 1,
+        [StringValue("Dr.")]
+        Dr = 2,
+        [StringValue("Dr. Dr.")]
+        DrDr = 3,
+        [StringValue("Prof.")]
+        Prof = 4,
+        [StringValue("Prof. Dr.")]
+        Prof_Dr = 5,
+        [StringValue("Prof. Dr. Dr.")]
+        Prof_Dr_Dr = 6
+
+    }
+
+    public enum Type
+    {
+        [StringValue("Organisation")]
+        Organisation = 0,
+        [StringValue("Person")]
+        Person = 1
+    }
+
     class Employee
     {
         private Int32 id;
@@ -15,7 +42,7 @@ namespace Auftragsmanagement_System.Models
         private Title title;
         private string area;
         private bool isActive;
-        private Int32 addressID;
+        //private Int32 addressID;
         private Address address;
 
         public int Id
@@ -66,10 +93,5 @@ namespace Auftragsmanagement_System.Models
             set { address = value; }
         }
 
-        public int AddressId
-        {
-            get { return addressID; }
-            set { addressID = value; }
-        }
     }
 }
