@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Auftragsmanagement_System.Framework;
 using Auftragsmanagement_System.Models;
+using Auftragsmanagement_System.Views.MainWindow.Controller;
 
 namespace Auftragsmanagement_System
 {
@@ -18,7 +19,7 @@ namespace Auftragsmanagement_System
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            new MainWindow().Show();
+            new MainWindowController().Initialize();
         }
     }
 }

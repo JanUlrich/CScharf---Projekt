@@ -12,7 +12,7 @@ namespace Auftragsmanagement_System.Mappings
         public EmployeeMap()
         {
             Table("Employees");
-            Id(x => x.Id).Not.Nullable();
+            Id(x => x.Id).Unique().Not.Nullable();
             Map(x => x.Firstname).Length(100).Not.Nullable();
             Map(x => x.Lastname).Length(100).Not.Nullable();
             Map(x => x.Title).CustomType<Title>().Not.Nullable();

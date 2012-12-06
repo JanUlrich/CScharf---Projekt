@@ -80,25 +80,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Views\Auftragsverwaltung\Controller\AuftragsverwaltungController.cs" />
+    <Compile Include="Views\Auftragsverwaltung\ViewModel\AuftragsverwaltungViewModel.cs" />
+    <Compile Include="Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml.cs">
+      <DependentUpon>AuftragsverwaltungView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="Mappings\OrderMap.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Views\ActionBar\Controller\ActionBarController.cs" />
+    <Compile Include="Views\ActionBar\ViewModel\ActionBarViewModel.cs" />
+    <Compile Include="Views\ActionBar\View\ActionBarView.xaml.cs">
+      <DependentUpon>ActionBarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Framework\NHibernateHelper.cs" />
     <Compile Include="Framework\RelayCommand.cs" />
     <Compile Include="Framework\Repository.cs" />
     <Compile Include="Framework\StringValueAttribut.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
+    <Compile Include="Views\MainWindow\Controller\MainWindowController.cs" />
     <Compile Include="Mappings\AddressMap.cs" />
     <Compile Include="Mappings\CityMap.cs" />
     <Compile Include="Mappings\CountryMap.cs" />
     <Compile Include="Mappings\EmployeeMap.cs" />
-    <Compile Include="Mitarbeiterverwaltung\Controller\MitarbeiterverwaltungController.cs" />
-    <Compile Include="Mitarbeiterverwaltung\ViewModel\MitarbeiterverwaltungViewModel.cs" />
+    <Compile Include="Views\Mitarbeiterverwaltung\Controller\MitarbeiterverwaltungController.cs" />
+    <Compile Include="Views\Mitarbeiterverwaltung\ViewModel\MitarbeiterverwaltungViewModel.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml.cs">
+    <Compile Include="Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml.cs">
       <DependentUpon>MitarbeiterverwaltungView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\ActionBar\View\ActionBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow\View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,11 +130,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainWindow\View\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml">
+    <Page Include="Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Views\Artikelverwaltung\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Auftragsmanagement_System.Framework;
-using Auftragsmanagement_System.Mitarbeiterverwaltung.Controller;
-using Auftragsmanagement_System.Mitarbeiterverwaltung.View;
-using Auftragsmanagement_System.Models;
 
-namespace Auftragsmanagement_System
+namespace Auftragsmanagement_System.Views.Auftragsverwaltung.View
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für AuftragsverwaltungView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuftragsverwaltungView : UserControl
     {
-        public MainWindow()
+        public AuftragsverwaltungView()
         {
             InitializeComponent();
-            contentView.Content = new MitarbeiterverwaltungController().Initialize();
         }
     }
 }

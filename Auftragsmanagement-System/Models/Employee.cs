@@ -45,6 +45,11 @@ namespace Auftragsmanagement_System.Models
         //private Int32 addressID;
         private Address address;
 
+        public Employee()
+        {
+            //id = 0;
+        }
+
         public int Id
         {
             get { return id; }
