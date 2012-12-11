@@ -80,8 +80,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Models\OrderMap.cs" />
+    <Compile Include="Views\Reporting\Controller\ArticleCount.cs" />
     <Compile Include="Views\Auftragsverwaltung\Controller\AuftragsverwaltungController.cs" />
     <Compile Include="Views\Auftragsverwaltung\ViewModel\AuftragsverwaltungViewModel.cs" />
     <Compile Include="Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml.cs">
@@ -114,6 +117,7 @@
     <Compile Include="Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml.cs">
       <DependentUpon>MitarbeiterverwaltungView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reporting\Controller\ReportingController.cs" />
     <Page Include="Views\ActionBar\View\ActionBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -48,8 +48,24 @@ namespace Auftragsmanagement_System.Models
         public Employee()
         {
             //id = 0;
+            EmployeeNumber = 0;
+            Lastname = "";
+            Firstname = "";
+            Title = Title.keinTitel;
+            Area = "";
+            IsActive = false;
+            Address = new Address();
         }
-
+        /*
+        public void SaveIntoDatabase(string databaseFile)
+        {
+            var mEmployeeRepository = new Repository<Employee>(databaseFile);
+            var mEmployeeRepository = new Repository<Address>(databaseFile);
+            var mCityRepository = new Repository<City>(databaseFile);
+            var mCountryRepository = new Repository<Country>(databaseFile);
+            mEmployeeRepository.Save(Address.City.Country);
+        }
+        */
         public int Id
         {
             get { return id; }

@@ -13,11 +13,11 @@ namespace Auftragsmanagement_System.Mappings
         public AddressMap()
         {
             Table("Adresses");
-            Id(x => x.Id).Not.Nullable();
+            Id(x => x.Id).Unique().Not.Nullable();
             Map(x => x.Street).Length(100);
             Map(x => x.StreetNumber).Length(5);
-            References<City>(x => x.City, "CityId");
-
+            References<City>(x => x.City, "CityId").Not.Nullable().Cascade.All();
+            //HasOne<City>(address => address.City).ForeignKey("CityId").Cascade.SaveUpdate();
         }
     }
 }

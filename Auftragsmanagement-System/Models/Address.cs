@@ -14,6 +14,13 @@ namespace Auftragsmanagement_System.Models
         //private Int32 cityId;
         private City city;
 
+        public Address()
+        {
+            street = "";
+            streetNumber = "";
+            city = new City();
+        }
+
         public int Id
         {
             get { return id; }

@@ -8,5 +8,6 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.Controller
 {
     class AuftragsverwaltungController
     {
+
     }
 }

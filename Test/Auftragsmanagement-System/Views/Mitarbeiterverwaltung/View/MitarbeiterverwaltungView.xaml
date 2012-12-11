@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="Auftragsmanagement_System.Mitarbeiterverwaltung.View.MitarbeiterverwaltungView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="341" Width="480">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" ItemsSource="{Binding Models}" VerticalAlignment="Top" Height="341" Width="311"/>
+
+    </Grid>
+</UserControl>

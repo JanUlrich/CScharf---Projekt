@@ -16,7 +16,7 @@ namespace Auftragsmanagement_System.Mappings
             Id(x => x.Id).Not.Nullable();
             Map(x => x.PostalCode).Length(10).Not.Nullable();
             Map(x => x.Name).Length(100).Not.Nullable();
-            References<Country>(x => x.Country, "CountryId");
+            References<Country>(x => x.Country, "CountryId").Not.Nullable().Cascade.All();
 
         }
     }

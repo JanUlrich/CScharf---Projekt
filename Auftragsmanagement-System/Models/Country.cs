@@ -11,6 +11,11 @@ namespace Auftragsmanagement_System.Models
         private Int32 id;
         private string name;
 
+        public Country()
+        {
+            name = "";
+        }
+
         public string Name
         {
             get { return name; }

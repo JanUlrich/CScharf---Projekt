@@ -13,6 +13,13 @@ namespace Auftragsmanagement_System.Models
         private string name;
         private Country country;
 
+        public City()
+        {
+            PostalCode = "";
+            Name = "";
+            Country = new Country();
+        }
+
         public int Id
         {
             get { return id; }

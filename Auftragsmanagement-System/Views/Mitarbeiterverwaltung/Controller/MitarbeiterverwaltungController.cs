@@ -17,15 +17,18 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         private MitarbeiterverwaltungViewModel mViewModel;
         private ActionBarViewModel mActionBarViewModel;
         private Repository<Employee> mEmployeeRepository;
+        private Repository<Address> mAddressRepository;
 
         public UserControl Initialize(ActionBarView actionBar)
         {
             UserControl view = new MitarbeiterverwaltungView();
+            string databaseName =
+                @"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db";
             mEmployeeRepository =
                 new Repository<Employee>(
-                    @"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db");
+                    databaseName);
                 //TODO: hier den absoluten Verweis ersetzen
-
+            mAddressRepository = new Repository<Address>(databaseName);
             mViewModel = new MitarbeiterverwaltungViewModel
                              {
                                  Models = new ObservableCollection<Employee>(mEmployeeRepository.GetAll()),
@@ -49,24 +52,24 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
             
             //hier wird die EmployeeNumber gesetzt:
             var memployees = mEmployeeRepository.GetAll();
-            memployees.Sort((e1, e2) => e1.EmployeeNumber.CompareTo(e2.EmployeeNumber));
-            emp.EmployeeNumber = memployees[0].EmployeeNumber + 1;
-            MessageBox.Show("neue Employee Nummer = "+ emp.EmployeeNumber); //TODO diese Debugausgabe entfernen (zuvor testen, ob richtige Nummer vergeben wird)
-            /*
-            foreach (var memp in mEmployeeRepository.GetAll())
+            memployees.Sort((e1, e2) => e2.EmployeeNumber.CompareTo(e1.EmployeeNumber));
+            if(memployees.Count>0){emp.EmployeeNumber = memployees[0].EmployeeNumber + 1;}else
             {
-                memp.EmployeeNumber
+                emp.EmployeeNumber = 1;
             }
-             */
+            //emp.Address = mAddressRepository.GetAll()[0];
+            //MessageBox.Show("neue Employee Nummer = "+ emp.EmployeeNumber); //TODO diese Debugausgabe entfernen (zuvor testen, ob richtige Nummer vergeben wird)
 
             mViewModel.SelectedModel = emp;
-            //mViewModel.Models.Add(mViewModel.SelectedModel); //erst beim Speichern adden
+            mViewModel.Models.Add(mViewModel.SelectedModel);
+            mEmployeeRepository.Save(mViewModel.SelectedModel);
+
             //oder andere Möglichkeit: Die Employees werden in die Liste eingefügt und können editiert werden. Erst bei einem Druck auf Speichern werden sie gespeichert. Neu in die Liste aufgenommene werden mit Stern gekennzeichnet.
         }
 
         private void DeleteCommandExecute(object obj)
         {
-            //TODO : Delete COmmand implementieren
+            mEmployeeRepository.Delete(mViewModel.SelectedModel);
         }
         private bool DeleteCommandCanExecute(object obj)
         {
