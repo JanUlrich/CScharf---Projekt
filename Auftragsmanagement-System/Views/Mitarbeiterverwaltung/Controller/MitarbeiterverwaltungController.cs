@@ -17,18 +17,17 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         private MitarbeiterverwaltungViewModel mViewModel;
         private ActionBarViewModel mActionBarViewModel;
         private Repository<Employee> mEmployeeRepository;
-        private Repository<Address> mAddressRepository;
+        //private Repository<Address> mAddressRepository;
 
-        public UserControl Initialize(ActionBarView actionBar)
+        public UserControl Initialize(ActionBarView actionBar, string databaseName)
         {
             UserControl view = new MitarbeiterverwaltungView();
-            string databaseName =
-                @"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db";
+            
             mEmployeeRepository =
                 new Repository<Employee>(
                     databaseName);
                 //TODO: hier den absoluten Verweis ersetzen
-            mAddressRepository = new Repository<Address>(databaseName);
+            //mAddressRepository = new Repository<Address>(databaseName);
             mViewModel = new MitarbeiterverwaltungViewModel
                              {
                                  Models = new ObservableCollection<Employee>(mEmployeeRepository.GetAll()),

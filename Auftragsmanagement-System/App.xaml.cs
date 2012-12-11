@@ -19,7 +19,9 @@ namespace Auftragsmanagement_System
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            new MainWindowController().Initialize();
+            string databaseName =
+                @"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db";
+            new MainWindowController().Initialize(databaseName);
         }
     }
 }

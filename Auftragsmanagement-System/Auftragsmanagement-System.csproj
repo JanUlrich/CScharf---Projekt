@@ -80,10 +80,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mappings\ArticleMap.cs" />
+    <Compile Include="Mappings\OrderLineMap.cs" />
+    <Compile Include="Mappings\OrderMap.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\CompleteOrder.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\OrderLine.cs" />
-    <Compile Include="Models\OrderMap.cs" />
     <Compile Include="Views\Reporting\Controller\ArticleCount.cs" />
     <Compile Include="Views\Auftragsverwaltung\Controller\AuftragsverwaltungController.cs" />
     <Compile Include="Views\Auftragsverwaltung\ViewModel\AuftragsverwaltungViewModel.cs" />
@@ -91,7 +94,6 @@
       <DependentUpon>AuftragsverwaltungView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow\ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="Mappings\OrderMap.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Views\ActionBar\Controller\ActionBarController.cs" />
     <Compile Include="Views\ActionBar\ViewModel\ActionBarViewModel.cs" />
@@ -118,6 +120,10 @@
       <DependentUpon>MitarbeiterverwaltungView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Reporting\Controller\ReportingController.cs" />
+    <Compile Include="Views\Reporting\ViewModel\ReportingViewModel.cs" />
+    <Compile Include="Views\Reporting\View\ReportingView.xaml.cs">
+      <DependentUpon>ReportingView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\ActionBar\View\ActionBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reporting\View\ReportingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

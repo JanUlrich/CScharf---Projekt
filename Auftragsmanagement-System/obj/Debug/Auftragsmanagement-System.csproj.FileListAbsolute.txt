@@ -31,3 +31,5 @@ F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagemen
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Test\Auftragsmanagement-System\bin\Debug\Auftragsmanagement-System.exe.config
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Test\Auftragsmanagement-System\obj\Debug\Auftragsmanagement-System.exe
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Test\Auftragsmanagement-System\obj\Debug\Auftragsmanagement-System.pdb
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Reporting\View\ReportingView.baml
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Reporting\View\ReportingView.g.cs
