@@ -11,14 +11,12 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
     {
         public Article Article;
         public int Count = 0;
+        
         public ArticleCount(Article article)
         {
             Article = article;
         }
-        public override bool Equals(object obj)
-        {
-            if (!(obj is ArticleCount)) return false;
-            return ((ArticleCount)obj).Article.ArticleNumber == Article.ArticleNumber;
-        }
+        
+        
     }
 }

@@ -114,5 +114,11 @@ namespace Auftragsmanagement_System.Models
             set { address = value; }
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Employee)) return false;
+            return ((Employee)obj).EmployeeNumber == EmployeeNumber;
+        }
+
     }
 }

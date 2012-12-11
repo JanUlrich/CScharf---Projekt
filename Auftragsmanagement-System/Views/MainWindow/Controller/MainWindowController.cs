@@ -28,7 +28,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
             mDatabaseName = databaseName;
             ActionBar = new ActionBarController().Initialize();
             mView = new MainWindowView();
-            mMitarbeiterverwaltung = new ReportingController().Initialize(mDatabaseName);//new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);
+            mMitarbeiterverwaltung = new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);//new ReportingController().Initialize(mDatabaseName);//
             mViewModel = new MainWindowViewModel
             {
                 Content = mMitarbeiterverwaltung,
@@ -48,7 +48,9 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
         private void ZeigeReportingExecute(object obj)
         {
             mReporting = new ReportingController().Initialize(mDatabaseName);
-            ((MainWindowViewModel)mView.DataContext).Content = mReporting;
+            mViewModel.Content = mReporting;
+            //mView.DataContext = mViewModel;
+            //((MainWindowViewModel)mView.DataContext).Content = mReporting;
         }
     }
 }

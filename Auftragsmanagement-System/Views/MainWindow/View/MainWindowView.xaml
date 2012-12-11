@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindowView" Height="600.746" Width="809.104">
     <Grid>
-        <ContentControl Content="{Binding Content}" Margin="455,0,0,10"/>
+        <ContentControl Content="{Binding Content, Mode=TwoWay}" Margin="455,0,0,10"/>
         <ContentControl Content="{Binding ActionBar}" Margin="7,8,399,0" Height="386" VerticalAlignment="Top"/>
         <Button Command="{Binding ZeigeReporting}" Content="Report" HorizontalAlignment="Left" Height="48" Margin="32,456,0,0" VerticalAlignment="Top" Width="79"/>
         <Button Content="Button" HorizontalAlignment="Left" Height="48" Margin="132,459,0,0" VerticalAlignment="Top" Width="79"/>

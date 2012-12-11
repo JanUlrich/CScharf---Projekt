@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Auftragsmanagement_System.Views.Reporting.Controller;
 
 namespace Auftragsmanagement_System.Models
 {
@@ -57,5 +58,12 @@ namespace Auftragsmanagement_System.Models
             get { return id; }
             set { id = value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Article)) return false;
+            return ((Article)obj).ArticleNumber == ArticleNumber;
+        }
+
     }
 }

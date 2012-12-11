@@ -64,5 +64,11 @@ namespace Auftragsmanagement_System.Models
             get { return id; }
             set { id = value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Customer)) return false;
+            return ((Customer)obj).CustomerNumber == CustomerNumber;
+        }
     }
 }

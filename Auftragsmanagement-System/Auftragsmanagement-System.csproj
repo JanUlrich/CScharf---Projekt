@@ -120,6 +120,7 @@
     <Compile Include="Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml.cs">
       <DependentUpon>MitarbeiterverwaltungView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reporting\Controller\Counter.cs" />
     <Compile Include="Views\Reporting\Controller\ReportingController.cs" />
     <Compile Include="Views\Reporting\ViewModel\ReportingViewModel.cs" />
     <Compile Include="Views\Reporting\View\ReportingView.xaml.cs">
@@ -184,7 +185,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Views\Artikelverwaltung\" />
   </ItemGroup>
   <ItemGroup>
