@@ -37,9 +37,12 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
 
             mActionBarViewModel = new ActionBarViewModel
                                       {
-                                          AddCommand = new RelayCommand(AddCommandExecute),
-                                          DeleteCommand = new RelayCommand(DeleteCommandExecute, DeleteCommandCanExecute),
-                                          SaveCommand = new RelayCommand(SaveCommandExecute, SaveCommandCanExecute)
+                                          Command1 = new RelayCommand(AddCommandExecute),
+                                          Command2 = new RelayCommand(DeleteCommandExecute, DeleteCommandCanExecute),
+                                          Command3 = new RelayCommand(SaveCommandExecute, SaveCommandCanExecute),
+                                          Command1Text = "Neu",
+                                          Command2Text = "Löschen",
+                                          Command3Text = "Speichern"
                                       };
             actionBar.DataContext = mActionBarViewModel;
             return view;

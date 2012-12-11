@@ -9,6 +9,7 @@ using Auftragsmanagement_System.Framework;
 using Auftragsmanagement_System.Models;
 using Auftragsmanagement_System.Views.Reporting.View;
 using Auftragsmanagement_System.Views.Reporting.ViewModel;
+using Uebung_12.Framework;
 
 namespace Auftragsmanagement_System.Views.Reporting.Controller
 {
@@ -21,17 +22,24 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
         {
             var ret = new ReportingView();
             mDatabaseName = databasename;
-            ObservableCollection<OrderLine> orders = new ObservableCollection<OrderLine>(new Repository<OrderLine>(mDatabaseName).GetAll());
+            
             mViewModel = new ReportingViewModel
                                   {
-                                      
+                                      ZeigeMitarbeiterReporting = new RelayCommand(ZeigeMitarbeiterReportingExecute),
+                                      ZeigeArtikelReporting = new RelayCommand(ZeigeArtikelReportingExecute)
                                   };
-            mViewModel.TopArtikel = GibMeistverkaufteArtikel(orders, new DateTime(0), DateTime.Now, null);
+            
             ret.DataContext = mViewModel;
             return ret;
         }
 
-        private void MitarbeiterReportingExecute(object obj)
+        private void ZeigeArtikelReportingExecute(object obj)
+        {
+            ObservableCollection<OrderLine> orders = new ObservableCollection<OrderLine>(new Repository<OrderLine>(mDatabaseName).GetAll());
+            mViewModel.TopArtikel = GibMeistverkaufteArtikel(orders, new DateTime(0), DateTime.Now, null);
+        }
+
+        private void ZeigeMitarbeiterReportingExecute(object obj)
         {
             
         }
