@@ -23,23 +23,30 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
             ObservableCollection<OrderLine> orders = new ObservableCollection<OrderLine>(new Repository<OrderLine>(mDatabaseName).GetAll());
             ret.DataContext = new ReportingViewModel
                                   {
-                                      TopArtikel = GibMeistverkaufteArtikel(orders)
+                                      TopArtikel = GibMeistverkaufteArtikel(orders, new DateTime(0), DateTime.Now, null)
                                   };
 
             return ret;
         }
 
-        private ObservableCollection<Article> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="area">hier null übergeben, falls alle Gebiete angezeigt werden sollen</param>
+        /// <returns></returns>
+        private ObservableCollection<Article> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders, DateTime von, DateTime bis, string area)
         {
             var list = new List<ArticleCount>();
             foreach (var order in orders)
             {
-                var articleCount=new ArticleCount(order.Article);
-                if (list.Contains(articleCount))
-                {
-                    list[list.IndexOf(articleCount)].Count++;
-                }else{
-                    list.Add(new ArticleCount(order.Article));
+                if(order.Order.OrderDate.CompareTo(von) >=0 && order.Order.OrderDate.CompareTo(bis) <=0 && (area == null || order.Order.Employee.Area == area)){//wenn die Order in der Vorgegebenen Zeitspanne und Area war
+                    var articleCount=new ArticleCount(order.Article);
+                    if (list.Contains(articleCount))
+                    {
+                        list[list.IndexOf(articleCount)].Count++;
+                    }else{
+                        list.Add(new ArticleCount(order.Article));
+                    }
                 }
             }
             list.Sort((a1,a2)=>a2.Count.CompareTo(a1.Count)); //Die Liste sortieren. Den Artikel mit dem höchsten "Count" an oberster Stelle
@@ -53,11 +60,18 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
             return ret;
         }
 
-        private ObservableCollection<Employee> GibBesteMitarbeiter(ObservableCollection<Employee> emps)
+        private ObservableCollection<Employee> GibBesteMitarbeiter(ObservableCollection<Employee> emps, List<OrderLine> orders)
         {
             var list = new List<Employee>();
+            
+            foreach (var emp in emps)
+            {
+                
+            }
             return null;
         } 
+
+
 
     }
 }

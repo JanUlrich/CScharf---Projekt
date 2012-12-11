@@ -17,8 +17,8 @@ namespace Auftragsmanagement_System.Mappings
             Map(x => x.Description).Length(500);
             Map(x => x.OrderDate).CustomType<DateTime>().Not.Nullable();
             //Map(x => x.AddressId);
-            //References<Employee>(x => x.Employee, "EmployeeId");
-            //References<Address>(x => x.Customer, "CustomerId");
+            References<Employee>(x => x.Employee, "EmployeeId");
+            References<Customer>(x => x.Customer, "CustomerId");
 
         }
     }

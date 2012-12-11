@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Mappings\ArticleMap.cs" />
+    <Compile Include="Mappings\CustomerMap.cs" />
     <Compile Include="Mappings\OrderLineMap.cs" />
     <Compile Include="Mappings\OrderMap.cs" />
     <Compile Include="Models\Article.cs" />

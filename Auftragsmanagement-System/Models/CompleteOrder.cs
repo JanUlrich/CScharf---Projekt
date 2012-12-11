@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Auftragsmanagement_System.Models
 {
-    class CompleteOrder
+    class CompleteOrder //TODO: Diese Klasse wird möglicherweise nicht gebraucht und kann gelöscht werden...
     {
         private Order order;
         private List<OrderLine> orderlines;
@@ -24,11 +24,14 @@ namespace Auftragsmanagement_System.Models
             {
                 foreach (var orderLine in lines)
                 {
+                    var order = new CompleteOrder(order1, new List<OrderLine>());
+                    ret.Add(order);
                     if (orderLine.Order.Id == order1.Id)
                     {
-                        
+                        order.Orderlines.Add(orderLine);
                     }
                 }
+
             }
             return ret;
         }

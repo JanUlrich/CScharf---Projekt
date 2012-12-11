@@ -21,13 +21,14 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
         private UserControl mReporting;
         private MainWindowViewModel mViewModel;
         private string mDatabaseName;
+        private MainWindowView mView;
 
         public void Initialize(string databaseName)
         {
             mDatabaseName = databaseName;
             ActionBar = new ActionBarController().Initialize();
-            var view = new MainWindowView();
-            mMitarbeiterverwaltung = new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);
+            mView = new MainWindowView();
+            mMitarbeiterverwaltung = new ReportingController().Initialize(mDatabaseName);//new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);
             mViewModel = new MainWindowViewModel
             {
                 Content = mMitarbeiterverwaltung,
@@ -35,8 +36,8 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
                 ZeigeMitarbeiterverwaltung = new RelayCommand(ZeigeMitarbeiterverwaltungExecute),
                 ZeigeReporting = new RelayCommand(ZeigeReportingExecute)
             };
-            view.DataContext = mViewModel;
-            view.ShowDialog();
+            mView.DataContext = mViewModel;
+            mView.ShowDialog();
         }
 
         private void ZeigeMitarbeiterverwaltungExecute(object obj)
@@ -47,7 +48,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
         private void ZeigeReportingExecute(object obj)
         {
             mReporting = new ReportingController().Initialize(mDatabaseName);
-            mViewModel.Content = mReporting;
+            ((MainWindowViewModel)mView.DataContext).Content = mReporting;
         }
     }
 }
