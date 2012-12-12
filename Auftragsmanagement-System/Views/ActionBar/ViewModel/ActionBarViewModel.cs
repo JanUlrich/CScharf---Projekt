@@ -8,10 +8,12 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         private ICommand _Command1;
         private ICommand _Command2;
         private ICommand _Command3;
+        private ICommand _Command4;
 
         private string _Command1Text;
         private string _Command2Text;
         private string _Command3Text;
+        private string _Command4Text;
 
 
         public ICommand Command3
@@ -48,6 +50,18 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         {
             get { return _Command3Text; }
             set { _Command3Text = value; }
+        }
+
+        public ICommand Command4
+        {
+            get { return _Command4; }
+            set { _Command4 = value; }
+        }
+
+        public string Command4Text
+        {
+            get { return _Command4Text; }
+            set { _Command4Text = value; }
         }
     }
 }

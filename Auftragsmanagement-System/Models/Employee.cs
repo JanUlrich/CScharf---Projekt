@@ -120,5 +120,10 @@ namespace Auftragsmanagement_System.Models
             return ((Employee)obj).EmployeeNumber == EmployeeNumber;
         }
 
+        public override int GetHashCode()
+        {
+            return EmployeeNumber;
+        }
+
     }
 }

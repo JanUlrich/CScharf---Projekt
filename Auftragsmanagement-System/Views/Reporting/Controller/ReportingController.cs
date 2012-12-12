@@ -83,8 +83,8 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                         foreach (var orderLine in order.Orderlines)
                         {
                             var umsatzCount = new Counter<Employee>(emp);
-                            int umsatz = orderLine.Amount*Convert.ToInt32(orderLine.Article.Price);
-                            if(list.Contains(umsatzCount))
+                            int umsatz = orderLine.Amount * Convert.ToInt32(orderLine.Article.Price);
+                            if (list.Contains(umsatzCount))
                             {
                                 list[list.IndexOf(umsatzCount)].Count += umsatz;
                             }

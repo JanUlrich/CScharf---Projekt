@@ -32,8 +32,13 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
 
         public override bool Equals(object obj)
         {
-            if (!(obj is T)) return false;
-            return ((T)obj).Equals(ToCount);
+            if (!(obj is Counter<T>)) return false;
+            return ((Counter<T>)obj).ToCount.Equals(ToCount);
+        }
+
+        public override int GetHashCode()
+        {
+            return ToCount.GetHashCode();
         }
 
         public static ObservableCollection<T> SortiereNachMaxCount(List<Counter<T>> list, int anzahl)

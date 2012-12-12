@@ -88,6 +88,11 @@
     <Compile Include="Models\CompleteOrder.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\OrderLine.cs" />
+    <Compile Include="Views\Artikelverwaltung\Controller\ArtikelverwaltungController.cs" />
+    <Compile Include="Views\Artikelverwaltung\ViewModel\ArtikelverwaltungViewModel.cs" />
+    <Compile Include="Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml.cs">
+      <DependentUpon>ArtikelverwaltungView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reporting\Controller\ArticleCount.cs" />
     <Compile Include="Views\Auftragsverwaltung\Controller\AuftragsverwaltungController.cs" />
     <Compile Include="Views\Auftragsverwaltung\ViewModel\AuftragsverwaltungViewModel.cs" />
@@ -127,6 +132,10 @@
       <DependentUpon>ReportingView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\ActionBar\View\ActionBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,9 +193,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Artikelverwaltung\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

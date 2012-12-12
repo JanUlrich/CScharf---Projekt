@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="71" Width="557">
     <Grid>
-        <Button Content="{Binding Command1Text}" Command="{Binding Command1}" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="75" Height="19"/>
-        <Button Content="{Binding Command2Text}" Command="{Binding Command2}" HorizontalAlignment="Left" Margin="90,26,0,0" VerticalAlignment="Top" Width="75" Height="19"/>
-        <Button Content="{Binding Command3Text}" Command="{Binding Command3}" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Height="19"/>
+        <Button Content="{Binding Command1Text}" Command="{Binding Command1}" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="75" Height="25"/>
+        <Button Content="{Binding Command2Text}" Command="{Binding Command2}" HorizontalAlignment="Left" Margin="90,26,0,0" VerticalAlignment="Top" Width="75" Height="25"/>
+        <Button Content="{Binding Command3Text}" Command="{Binding Command3}" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Height="25"/>
+        <Button Content="{Binding Command4Text}" Command="{Binding Command4}" HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top" Width="75" Height="25"/>
 
     </Grid>
 </UserControl>
