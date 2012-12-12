@@ -93,6 +93,11 @@
     <Compile Include="Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml.cs">
       <DependentUpon>ArtikelverwaltungView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Kundenverwaltung\Controller\KundenverwaltungController.cs" />
+    <Compile Include="Views\Kundenverwaltung\ViewModel\KundenverwaltungViewModel.cs" />
+    <Compile Include="Views\Kundenverwaltung\View\KundenverwaltungView.xaml.cs">
+      <DependentUpon>KundenverwaltungView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reporting\Controller\ArticleCount.cs" />
     <Compile Include="Views\Auftragsverwaltung\Controller\AuftragsverwaltungController.cs" />
     <Compile Include="Views\Auftragsverwaltung\ViewModel\AuftragsverwaltungViewModel.cs" />
@@ -142,6 +147,10 @@
     <Page Include="Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Kundenverwaltung\View\KundenverwaltungView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainWindow\View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>

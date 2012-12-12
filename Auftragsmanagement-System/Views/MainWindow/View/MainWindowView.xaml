@@ -6,6 +6,7 @@
         <ContentControl Content="{Binding Content, Mode=TwoWay}" Margin="455,0,0,10"/>
         <ContentControl Content="{Binding ActionBar}" Margin="7,8,399,0" Height="386" VerticalAlignment="Top"/>
         <Button Command="{Binding ZeigeReporting}" Content="Report" HorizontalAlignment="Left" Height="48" Margin="32,456,0,0" VerticalAlignment="Top" Width="79"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="48" Margin="132,459,0,0" VerticalAlignment="Top" Width="79"/>
+        <Button Command="{Binding ZeigeMitarbeiterverwaltung}" Content="Mitarbeiter" HorizontalAlignment="Left" Height="48" Margin="220,459,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Command="{Binding ZeigeArtikelverwaltung}" Content="Artikel" HorizontalAlignment="Left" Height="48" Margin="128,460,0,0" VerticalAlignment="Top" Width="78"/>
     </Grid>
 </Window>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -13,6 +15,7 @@ using Auftragsmanagement_System.Views.ActionBar.View;
 using Auftragsmanagement_System.Views.ActionBar.ViewModel;
 using Auftragsmanagement_System.Views.Artikelverwaltung.View;
 using Auftragsmanagement_System.Views.Artikelverwaltung.ViewModel;
+using Microsoft.Win32;
 using Uebung_12.Framework;
 
 namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
@@ -42,9 +45,11 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
                 Command1 = new RelayCommand(AddCommandExecute),
                 Command2 = new RelayCommand(DeleteCommandExecute, DeleteCommandCanExecute),
                 Command3 = new RelayCommand(SaveCommandExecute, SaveCommandCanExecute),
+                Command4 = new RelayCommand(ImportCommandExecute),
                 Command1Text = "Neu",
                 Command2Text = "Löschen",
-                Command3Text = "Speichern"
+                Command3Text = "Speichern",
+                Command4Text = "Importieren"
             };
 
             return view;
@@ -52,14 +57,6 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
         private void AddCommandExecute(object obj)
         {
             var art = new Article();
-
-            var mArticles = mArticleRepository.GetAll();
-            mArticles.Sort((a1, a2) => a2.ArticleNumber.CompareTo(a1.ArticleNumber));
-            if (mArticles.Count > 0) { art.ArticleNumber = ""+Convert.ToInt32(mArticles[0].ArticleNumber) + 1; }
-            else
-            {
-                art.ArticleNumber = "1";
-            }
 
             mViewModel.SelectedArticle = art;
             mViewModel.Articles.Add(mViewModel.SelectedArticle);
@@ -85,12 +82,33 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
 
         private void ImportCommandExecute(object obj)
         {
+            string Pfad = string.Empty;
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            Nullable<bool> result = openFileDialog1.ShowDialog();
+            if (result.Value == true){
+                Pfad = openFileDialog1.FileName;
+                mViewModel.SelectedArticle = ImportiereAuftrag(Pfad);
+            }
             
         }
 
-        private void ImportiereAuftrag(string file)
+        private Article ImportiereAuftrag(string file)
         {
-            
+            Article article;
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof (Article));
+            using (var stream = new FileStream(file, FileMode.Open))
+            {
+                article = serializer.Deserialize(stream) as Article;
+            }
+            return article;
+        }
+
+        private bool ArticleNumberIsUnique(string artNum)
+        {
+            var mArticles = mArticleRepository.GetAll();
+            return mArticles.Find((art) => (art.ArticleNumber.Equals(artNum))) == null;           
         }
 
     }

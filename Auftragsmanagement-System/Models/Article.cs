@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Auftragsmanagement_System.Views.Reporting.Controller;
 
 namespace Auftragsmanagement_System.Models
 {
+    [XmlType("Artikel")]
     public class Article
     {
         private Int32 id;
@@ -17,6 +19,10 @@ namespace Auftragsmanagement_System.Models
         private Decimal price;
         private DateTime validFrom;
         private DateTime validTo;
+        //sind für die XML-Serialisierung:
+        private string gueltigBis;
+        private string gueltigAb;
+        private string preis;
 
         public Article()
         {
@@ -28,14 +34,14 @@ namespace Auftragsmanagement_System.Models
             validTo = DateTime.MaxValue;
         }
 
-        [XmlElement("GueltigBis")]
+        [XmlIgnore]
         public DateTime ValidTo
         {
             get { return validTo; }
             set { validTo = value; }
         }
 
-        [XmlElement("GueltigAb")]
+        [XmlIgnore]
         public DateTime ValidFrom
         {
             get { return validFrom; }
@@ -43,7 +49,7 @@ namespace Auftragsmanagement_System.Models
         }
 
 
-        [XmlElement("Preis")]
+        [XmlIgnore]
         public decimal Price
         {
             get { return price; }
@@ -75,6 +81,44 @@ namespace Auftragsmanagement_System.Models
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public string GueltigBis
+        {
+            get { return ""; }
+            set
+            {
+                DateTimeFormatInfo dtfi = new DateTimeFormatInfo();
+                dtfi.ShortDatePattern = "dd-MM-yyyy";
+                dtfi.DateSeparator = "-";
+                DateTime objDate = Convert.ToDateTime(value, dtfi);
+                ValidTo = objDate;
+            }
+        }
+
+        public string GueltigAb
+        {
+            get { return ""; }
+            set
+            {
+                DateTimeFormatInfo dtfi = new DateTimeFormatInfo();
+                dtfi.ShortDatePattern = "dd-MM-yyyy";
+                dtfi.DateSeparator = "-";
+                DateTime objDate = Convert.ToDateTime(value, dtfi);
+                ValidFrom = objDate;
+            }
+        }
+
+        public string Preis
+        {
+            get { return Price.ToString(); }
+            set
+            {
+                Decimal val;
+                if (!decimal.TryParse(value.Replace(",", "").Replace(".", ""), NumberStyles.Number, CultureInfo.InvariantCulture, out val))Price = 0;
+                Price = val / 100;
+                preis = value;
+            }
         }
 
         public override bool Equals(object obj)

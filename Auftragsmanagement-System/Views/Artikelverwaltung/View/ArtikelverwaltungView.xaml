@@ -3,9 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             mc:Ignorable="d" Width="612" Height="353">
+    <Grid Height="335" Margin="46,9,12,9">
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Height="266" HorizontalAlignment="Left" Margin="20,30,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="304" ItemsSource="{Binding Articles}" />
+        
+        <TextBox Text="{Binding SelectedArticle.ArticleNumber}" Height="19" HorizontalAlignment="Left" Margin="339,48,0,0" Name="textBox1" VerticalAlignment="Top" Width="201" />
+        <Label Content="Artikelnummer" Height="28" HorizontalAlignment="Left" Margin="334,25,0,0" Name="Emp_EmployeeNumber" VerticalAlignment="Top" />
+        
+        <TextBox Text="{Binding SelectedArticle.Price}" Height="19" HorizontalAlignment="Left" Margin="445,101,0,0" Name="textBox2" VerticalAlignment="Top" Width="95" />
+        <Label Content="Preis" Height="28" HorizontalAlignment="Left" Margin="442,78,0,0" Name="Emp_Title" VerticalAlignment="Top" RenderTransformOrigin="0.457,0.214" />
+
+        <TextBox Height="19" Text="{Binding SelectedArticle.Name}" HorizontalAlignment="Left" Margin="339,101,0,0" Name="textBox3" VerticalAlignment="Top" Width="95" />
+        <Label Content="Name" Height="28" HorizontalAlignment="Left" Margin="334,78,0,0" Name="Emp_Lastname" VerticalAlignment="Top" RenderTransformOrigin="0.357,0.321" />
+
+        <TextBox Text="{Binding SelectedArticle.ValidTo}" Height="19" HorizontalAlignment="Left" Margin="445,275,0,0" Name="textBox4" VerticalAlignment="Top" Width="95" />
+        <Label Content="Gültig bis" Height="28" HorizontalAlignment="Left" Margin="442,252,0,0" Name="Emp_Firstname" VerticalAlignment="Top" />
+
+        <TextBox Text="{Binding SelectedArticle.Description}" Height="91" HorizontalAlignment="Left" Margin="339,160,0,0" Name="textBox5" VerticalAlignment="Top" Width="203" />
+        <Label Content="Beschreibung" Height="28" HorizontalAlignment="Left" Margin="334,137,0,0" Name="Emp_Area" VerticalAlignment="Top" />
+        <TextBox Text="{Binding SelectedArticle.ValidFrom}" Height="19" HorizontalAlignment="Left" Margin="339,275,0,0" x:Name="textBox9" VerticalAlignment="Top" Width="95" />
+        <Label Content="Gültig von" Height="28" HorizontalAlignment="Left" Margin="334,252,0,0" x:Name="Adr_Street" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

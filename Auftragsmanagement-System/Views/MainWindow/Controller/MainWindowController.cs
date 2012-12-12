@@ -8,6 +8,8 @@ using Auftragsmanagement_System.Mitarbeiterverwaltung.View;
 using Auftragsmanagement_System.Models;
 using Auftragsmanagement_System.Views.ActionBar.Controller;
 using Auftragsmanagement_System.Views.ActionBar.View;
+using Auftragsmanagement_System.Views.Artikelverwaltung.Controller;
+using Auftragsmanagement_System.Views.Artikelverwaltung.View;
 using Auftragsmanagement_System.Views.MainWindow.ViewModel;
 using Auftragsmanagement_System.Views.Reporting.Controller;
 using Uebung_12.Framework;
@@ -19,6 +21,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
         private ActionBarView ActionBar;
         private UserControl mMitarbeiterverwaltung;
         private UserControl mReporting;
+        private UserControl mArtikelverwaltung;
         private MainWindowViewModel mViewModel;
         private string mDatabaseName;
         private MainWindowView mView;
@@ -34,7 +37,8 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
                 Content = mMitarbeiterverwaltung,
                 ActionBar = ActionBar,
                 ZeigeMitarbeiterverwaltung = new RelayCommand(ZeigeMitarbeiterverwaltungExecute),
-                ZeigeReporting = new RelayCommand(ZeigeReportingExecute)
+                ZeigeReporting = new RelayCommand(ZeigeReportingExecute),
+                ZeigeArtikelverwaltung = new RelayCommand(ZeigeArtikelverwaltungExecute)
             };
             mView.DataContext = mViewModel;
             mView.ShowDialog();
@@ -42,7 +46,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
 
         private void ZeigeMitarbeiterverwaltungExecute(object obj)
         {
-            mViewModel.Content = mMitarbeiterverwaltung;
+            mViewModel.Content = new MitarbeiterverwaltungController().Initialize(ActionBar, mDatabaseName);
         }
 
         private void ZeigeReportingExecute(object obj)
@@ -52,5 +56,12 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
             //mView.DataContext = mViewModel;
             //((MainWindowViewModel)mView.DataContext).Content = mReporting;
         }
+
+        private void ZeigeArtikelverwaltungExecute(object obj)
+        {
+            mArtikelverwaltung = new ArtikelverwaltungController().Initialize(ActionBar, mDatabaseName);
+            mViewModel.Content = mArtikelverwaltung;
+        }
+
     }
 }

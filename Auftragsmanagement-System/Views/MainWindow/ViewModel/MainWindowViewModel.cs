@@ -1,19 +1,22 @@
 using System.Windows.Controls;
 using System.Windows.Input;
+using Auftragsmanagement_System.Framework;
 
 namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
 {
-    class MainWindowViewModel
+    class MainWindowViewModel : ViewModelBase
     {
         private UserControl content;
         private UserControl actionBar;
         private ICommand zeigeMitarbeiterverwaltung;
         private ICommand zeigeReporting;
+        private ICommand zeigeArtikelverwaltung;
 
         public UserControl Content
         {
             get { return content; }
-            set { content = value; }
+            set { content = value;
+            OnPropertyChanged("Content");}
         }
 
         public UserControl ActionBar
@@ -32,6 +35,12 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         {
             get { return zeigeReporting; }
             set { zeigeReporting = value; }
+        }
+
+        public ICommand ZeigeArtikelverwaltung
+        {
+            get { return zeigeArtikelverwaltung; }
+            set { zeigeArtikelverwaltung = value; }
         }
     }
 }

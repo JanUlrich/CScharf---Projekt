@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Auftragsmanagement_System.Views.Kundenverwaltung.View
+namespace Auftragsmanagement_System.Views.Kundenverwaltung2.View
 {
     /// <summary>
     /// Interaktionslogik für KundenverwaltungView.xaml

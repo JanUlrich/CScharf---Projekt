@@ -35,3 +35,5 @@ F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagemen
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Reporting\View\ReportingView.g.cs
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Artikelverwaltung\View\ArtikelverwaltungView.baml
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Artikelverwaltung\View\ArtikelverwaltungView.g.cs
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Kundenverwaltung\View\KundenverwaltungView.baml
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Kundenverwaltung\View\KundenverwaltungView.g.cs
