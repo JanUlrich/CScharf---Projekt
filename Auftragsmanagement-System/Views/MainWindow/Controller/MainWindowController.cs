@@ -28,7 +28,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
             mDatabaseName = databaseName;
             ActionBar = new ActionBarController().Initialize();
             mView = new MainWindowView();
-            mMitarbeiterverwaltung = new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);//new ReportingController().Initialize(mDatabaseName);//
+            mMitarbeiterverwaltung = new ReportingController().Initialize(mDatabaseName);//new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);//
             mViewModel = new MainWindowViewModel
             {
                 Content = mMitarbeiterverwaltung,

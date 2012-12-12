@@ -28,7 +28,10 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                                       ZeigeMitarbeiterReporting = new RelayCommand(ZeigeMitarbeiterReportingExecute),
                                       ZeigeArtikelReporting = new RelayCommand(ZeigeArtikelReportingExecute)
                                   };
-            
+
+            ZeigeArtikelReportingExecute(null);
+            ZeigeMitarbeiterReportingExecute(null);
+
             ret.DataContext = mViewModel;
             return ret;
         }
@@ -41,7 +44,9 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
 
         private void ZeigeMitarbeiterReportingExecute(object obj)
         {
-            
+            var orders = CompleteOrder.GeneriereOrders(new Repository<Order>(mDatabaseName).GetAll(),
+                                          new Repository<OrderLine>(mDatabaseName).GetAll());
+            mViewModel.TopMitarbeiter = GibBesteMitarbeiter(new Repository<Employee>(mDatabaseName).GetAll(), orders);
         }
         
         private ObservableCollection<Article> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders, DateTime von, DateTime bis, string area)
@@ -59,28 +64,42 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                     }
                 }
             }
-            list.Sort((a1,a2)=>a2.Count.CompareTo(a1.Count)); //Die Liste sortieren. Den Artikel mit dem höchsten "Count" an oberster Stelle
-            if(list.Count>10)list.RemoveRange(10,list.Count-10);//Alle überschüssigen Elemente entfernen (wir wollen nur die ersten 10)
 
-            var ret = new ObservableCollection<Article>(); //Observable Collection bilden
-            foreach (var articleCount in list)
-            {
-                ret.Add(articleCount.ToCount);
-            }
-            return ret;
+            return Counter<Article>.SortiereNachMaxCount(list, 10);
+            //list.Sort((a1,a2)=>a2.Count.CompareTo(a1.Count)); 
+            //if(list.Count>10)list.RemoveRange(10,list.Count-10);
+
         }
 
-        private ObservableCollection<Employee> GibBesteMitarbeiter(ObservableCollection<Employee> emps, List<CompleteOrder> orders)
+        private ObservableCollection<Employee> GibBesteMitarbeiter(List<Employee> emps, List<CompleteOrder> orders)
         {
-            var list = new List<Employee>();
+            var list = new List<Counter<Employee>>();
             foreach (var order in orders)
             {
                 foreach (var emp in emps)
                 {
+                    if (order.Order.Employee.Equals(emp))
+                    {//Erzielter Umsatz der Bestellung errechnen:
+                        foreach (var orderLine in order.Orderlines)
+                        {
+                            var umsatzCount = new Counter<Employee>(emp);
+                            int umsatz = orderLine.Amount*Convert.ToInt32(orderLine.Article.Price);
+                            if(list.Contains(umsatzCount))
+                            {
+                                list[list.IndexOf(umsatzCount)].Count += umsatz;
+                            }
+                            else
+                            {
+                                umsatzCount.Count += umsatz;
+                                list.Add(umsatzCount);
+                            }
+                        }
+                    }
                     //if(order.Order.Employee.EmployeeNumber == order.Order.)
-                }   
+                }
+   
             }
-            return null;
+            return Counter<Employee>.SortiereNachMaxCount(list,10);
         }
 
 

@@ -5,7 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="314" Width="325">
     <Grid>
-        <DataGrid ItemsSource="{Binding TopArtikel}" Margin="6"/>
+        <TabControl HorizontalAlignment="Left" Height="303" Margin="6" VerticalAlignment="Top" Width="311">
+            <TabItem Header="Beste Mitarbeiter">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ItemsSource="{Binding TopMitarbeiter}" Margin="6"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid ItemsSource="{Binding TopArtikel}" Margin="6"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </UserControl>
