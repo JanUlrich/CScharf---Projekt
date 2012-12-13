@@ -10,6 +10,8 @@ using Auftragsmanagement_System.Views.ActionBar.Controller;
 using Auftragsmanagement_System.Views.ActionBar.View;
 using Auftragsmanagement_System.Views.Artikelverwaltung.Controller;
 using Auftragsmanagement_System.Views.Artikelverwaltung.View;
+using Auftragsmanagement_System.Views.Auftragsverwaltung.Controller;
+using Auftragsmanagement_System.Views.Auftragsverwaltung.View;
 using Auftragsmanagement_System.Views.MainWindow.ViewModel;
 using Auftragsmanagement_System.Views.Reporting.Controller;
 using Uebung_12.Framework;
@@ -18,7 +20,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
 {
     class MainWindowController
     {
-        private ActionBarView ActionBar;
+        private ActionBarView mActionBar;
         private UserControl mMitarbeiterverwaltung;
         private UserControl mReporting;
         private UserControl mArtikelverwaltung;
@@ -29,16 +31,17 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
         public void Initialize(string databaseName)
         {
             mDatabaseName = databaseName;
-            ActionBar = new ActionBarController().Initialize();
+            mActionBar = new ActionBarController().Initialize();
             mView = new MainWindowView();
-            mMitarbeiterverwaltung = new ReportingController().Initialize(mDatabaseName);//new MitarbeiterverwaltungController().Initialize(ActionBar, databaseName);//
+            mMitarbeiterverwaltung = new ReportingController().Initialize(mDatabaseName);//new MitarbeiterverwaltungController().Initialize(mActionBar, databaseName);//
             mViewModel = new MainWindowViewModel
             {
                 Content = mMitarbeiterverwaltung,
-                ActionBar = ActionBar,
+                ActionBar = mActionBar,
                 ZeigeMitarbeiterverwaltung = new RelayCommand(ZeigeMitarbeiterverwaltungExecute),
                 ZeigeReporting = new RelayCommand(ZeigeReportingExecute),
-                ZeigeArtikelverwaltung = new RelayCommand(ZeigeArtikelverwaltungExecute)
+                ZeigeArtikelverwaltung = new RelayCommand(ZeigeArtikelverwaltungExecute),
+                ZeigeAuftragsverwaltung = new RelayCommand(ZeigeAuftragsverwaltungExecute)
             };
             mView.DataContext = mViewModel;
             mView.ShowDialog();
@@ -46,7 +49,12 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
 
         private void ZeigeMitarbeiterverwaltungExecute(object obj)
         {
-            mViewModel.Content = new MitarbeiterverwaltungController().Initialize(ActionBar, mDatabaseName);
+            mViewModel.Content = new MitarbeiterverwaltungController().Initialize(mActionBar, mDatabaseName);
+        }
+
+        private void ZeigeAuftragsverwaltungExecute(object obj)
+        {
+            mViewModel.Content = new AuftragsverwaltungController().Initialize(mActionBar, mDatabaseName);
         }
 
         private void ZeigeReportingExecute(object obj)
@@ -59,7 +67,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.Controller
 
         private void ZeigeArtikelverwaltungExecute(object obj)
         {
-            mArtikelverwaltung = new ArtikelverwaltungController().Initialize(ActionBar, mDatabaseName);
+            mArtikelverwaltung = new ArtikelverwaltungController().Initialize(mActionBar, mDatabaseName);
             mViewModel.Content = mArtikelverwaltung;
         }
 

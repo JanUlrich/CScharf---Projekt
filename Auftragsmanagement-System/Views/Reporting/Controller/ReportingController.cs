@@ -37,8 +37,10 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
 
         private void AktualisiereReportingExecute(object obj)
         {
+            //Alle Reportings aktualisieren und anzeigen:
             ZeigeArtikelReportingExecute(null);
             ZeigeMitarbeiterReportingExecute(null);
+            ZeigeKundenReportingExecute(null);
         }
 
         private void ZeigeArtikelReportingExecute(object obj)
@@ -52,6 +54,13 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
             var orders = CompleteOrder.GeneriereOrders(new Repository<Order>(mDatabaseName).GetAll(),
                                           new Repository<OrderLine>(mDatabaseName).GetAll());
             mViewModel.TopMitarbeiter = GibBesteMitarbeiter(new Repository<Employee>(mDatabaseName).GetAll(), orders);
+        }
+
+        private void ZeigeKundenReportingExecute(object obj)
+        {
+            var orders = CompleteOrder.GeneriereOrders(new Repository<Order>(mDatabaseName).GetAll(),
+                                          new Repository<OrderLine>(mDatabaseName).GetAll());
+            mViewModel.TopKunden = GibBesteKunden(new Repository<Customer>(mDatabaseName).GetAll(), orders);
         }
 
         private ObservableCollection<Counter<Article>> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders)
@@ -113,9 +122,47 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                     }
                     //if(order.Order.Employee.EmployeeNumber == order.Order.)
                 }
-   
+
             }
-            return Counter<Employee>.SortiereNachMaxCount(list,10);
+            return Counter<Employee>.SortiereNachMaxCount(list, 10);
+        }
+
+        private ObservableCollection<Counter<Customer>> GibBesteKunden(List<Customer> customers, List<CompleteOrder> orders)
+        {
+            var list = new List<Counter<Customer>>();
+            foreach (var customer in customers)
+            {
+                list.Add(new Counter<Customer>(customer));
+            }
+            foreach (var order in orders)
+            {
+                foreach (var customer in customers)
+                {
+                    if (order.Order.Customer.Equals(customer))
+                    {
+                        if (MatchesConditions(order.Order.OrderDate, order.Order.Employee.Area))
+                        {//Erzielter Umsatz der Bestellung errechnen, wenn die Conditions stimmen:
+                            foreach (var orderLine in order.Orderlines)
+                            {
+                                var umsatzCount = new Counter<Customer>(customer);
+                                int umsatz = orderLine.Amount * Convert.ToInt32(orderLine.Article.Price);
+                                if (list.Contains(umsatzCount))
+                                {
+                                    list[list.IndexOf(umsatzCount)].Count += umsatz;
+                                }
+                                else
+                                {
+                                    umsatzCount.Count += umsatz;
+                                    list.Add(umsatzCount);
+                                }
+                            }
+                        }
+                    }
+                    //if(order.Order.Employee.EmployeeNumber == order.Order.)
+                }
+
+            }
+            return Counter<Customer>.SortiereNachMaxCount(list, 10);
         }
 
 

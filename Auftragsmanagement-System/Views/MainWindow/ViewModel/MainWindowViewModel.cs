@@ -11,6 +11,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         private ICommand zeigeMitarbeiterverwaltung;
         private ICommand zeigeReporting;
         private ICommand zeigeArtikelverwaltung;
+        private ICommand zeigeAuftragsverwaltung;
 
         public UserControl Content
         {
@@ -41,6 +42,12 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         {
             get { return zeigeArtikelverwaltung; }
             set { zeigeArtikelverwaltung = value; }
+        }
+
+        public ICommand ZeigeAuftragsverwaltung
+        {
+            get { return zeigeAuftragsverwaltung; }
+            set { zeigeAuftragsverwaltung = value; }
         }
     }
 }
