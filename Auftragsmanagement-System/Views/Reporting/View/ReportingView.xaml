@@ -11,10 +11,24 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid ItemsSource="{Binding TopMitarbeiter}" Margin="6" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Name" Width="SizeToCells" IsReadOnly="True">
+                            <DataGridTemplateColumn Header="Vorname" Width="SizeToCells" IsReadOnly="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Path=ToCount.Firstname}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Nachname" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=ToCount.Lastname}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="MitarbeiterNummer" Width="SizeToCells" IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=ToCount.EmployeeNumber}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
