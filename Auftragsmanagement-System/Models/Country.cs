@@ -10,6 +10,15 @@ namespace Auftragsmanagement_System.Models
     {
         private Int32 id;
         private string name;
+        
+        public static Country KontrolliereMitDatenbank(Country land, List<Country> länder)
+        {
+            foreach (var country in länder)
+            {
+                if (country.Name.Equals(land.Name)) return country;
+            }
+            return land;
+        }
 
         public Country()
         {

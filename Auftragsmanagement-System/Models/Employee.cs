@@ -90,6 +90,14 @@ namespace Auftragsmanagement_System.Models
             set { _firstname = value; }
         }
 
+        public string Titel
+        {
+            get
+            {
+                return StringValueAttribute.GetStringValue(Title);
+            }
+        }
+
         public Title Title
         {
             get { return title; }

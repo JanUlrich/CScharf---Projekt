@@ -13,6 +13,15 @@ namespace Auftragsmanagement_System.Models
         private string name;
         private Country country;
 
+        public static City KontrolliereMitDatenbank(City stadt, List<City> städte)
+        {
+            foreach (var city in städte)
+            {
+                if (stadt.PostalCode == city.PostalCode || stadt.Name.Equals(city.Name)) return city;
+            }
+            return stadt;
+        }
+
         public City()
         {
             PostalCode = "";

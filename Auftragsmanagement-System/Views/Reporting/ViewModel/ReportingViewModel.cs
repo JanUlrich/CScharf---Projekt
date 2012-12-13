@@ -97,7 +97,8 @@ namespace Auftragsmanagement_System.Views.Reporting.ViewModel
         public ObservableCollection<Counter<Customer>> TopKunden
         {
             get { return topKunden; }
-            set { topKunden = value; }
+            set { topKunden = value; 
+            OnPropertyChanged("TopKunden");}
         }
     }
 }

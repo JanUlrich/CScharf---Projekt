@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Auftragsmanagement_System.Framework;
@@ -72,6 +73,7 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         private void DeleteCommandExecute(object obj)
         {
             mEmployeeRepository.Delete(mViewModel.SelectedModel);
+            mViewModel.Models.Remove(mViewModel.SelectedModel);
         }
         private bool DeleteCommandCanExecute(object obj)
         {
@@ -80,7 +82,11 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
 
         private void SaveCommandExecute(object obj)
         {
-            mEmployeeRepository.Save(mViewModel.SelectedModel);
+            var mModel = mViewModel.SelectedModel;
+            var adressen = new List<Address>();
+            mEmployeeRepository.GetAll().ForEach((a) => adressen.Add(a.Address));
+            mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
+            mEmployeeRepository.Save(mModel);
         }
         private bool SaveCommandCanExecute(object obj)
         {

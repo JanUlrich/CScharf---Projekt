@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Auftragsmanagement_System.Framework;
 using Auftragsmanagement_System.Models;
+using Auftragsmanagement_System.Views.ActionBar.View;
+using Auftragsmanagement_System.Views.ActionBar.ViewModel;
 using Auftragsmanagement_System.Views.Reporting.View;
 using Auftragsmanagement_System.Views.Reporting.ViewModel;
 using Uebung_12.Framework;
@@ -19,7 +21,7 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
         private string mDatabaseName;
         private ReportingViewModel mViewModel;
 
-        public UserControl Initialize(string databasename)
+        public UserControl Initialize(ActionBarView actionBar, string databasename)
         {
             var ret = new ReportingView();
             mDatabaseName = databasename;
@@ -30,6 +32,8 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                                       ZeigeArtikelReporting = new RelayCommand(ZeigeArtikelReportingExecute),
                                       AktualisiereReporting = new RelayCommand(AktualisiereReportingExecute)
                                   };
+
+            actionBar.DataContext = new ActionBarViewModel();
 
             ret.DataContext = mViewModel;
             return ret;

@@ -19,5 +19,6 @@ namespace Auftragsmanagement_System.Mappings
             References<Country>(x => x.Country, "CountryId").Not.Nullable().Cascade.All();
 
         }
+        
     }
 }

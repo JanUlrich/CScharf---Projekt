@@ -12,6 +12,7 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         private ICommand zeigeReporting;
         private ICommand zeigeArtikelverwaltung;
         private ICommand zeigeAuftragsverwaltung;
+        private ICommand zeigeKundenverwaltung;
 
         public UserControl Content
         {
@@ -23,7 +24,8 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         public UserControl ActionBar
         {
             get { return actionBar; }
-            set { actionBar = value; }
+            set { actionBar = value;
+            OnPropertyChanged("ActionBar");}
         }
 
         public ICommand ZeigeMitarbeiterverwaltung
@@ -48,6 +50,12 @@ namespace Auftragsmanagement_System.Views.MainWindow.ViewModel
         {
             get { return zeigeAuftragsverwaltung; }
             set { zeigeAuftragsverwaltung = value; }
+        }
+
+        public ICommand ZeigeKundenverwaltung
+        {
+            get { return zeigeKundenverwaltung; }
+            set { zeigeKundenverwaltung = value; }
         }
     }
 }

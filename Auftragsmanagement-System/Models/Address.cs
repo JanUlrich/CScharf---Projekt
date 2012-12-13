@@ -14,6 +14,23 @@ namespace Auftragsmanagement_System.Models
         //private Int32 cityId;
         private City city;
 
+        public static Address KontrolliereMitDatenbank(Address adresse, List<Address> Adressen)
+        {
+            var städte = new List<City>();
+            var länder = new List<Country>();
+            
+            foreach (var address in Adressen)
+            {
+                städte.Add(address.city);
+                länder.Add(address.city.Country);
+            }
+
+            adresse.City = City.KontrolliereMitDatenbank(adresse.City, städte);
+            adresse.City.Country = Country.KontrolliereMitDatenbank(adresse.City.Country, länder);
+
+            return adresse;
+        }
+
         public Address()
         {
             street = "";

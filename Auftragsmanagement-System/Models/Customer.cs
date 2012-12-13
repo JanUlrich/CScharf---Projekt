@@ -35,6 +35,14 @@ namespace Auftragsmanagement_System.Models
             set { customerNumber = value; }
         }
 
+        public string Titel
+        {
+            get
+            {
+                return Auftragsmanagement_System.Framework.StringValueAttribute.GetStringValue(Title);
+            }
+        }
+
         public Title Title
         {
             get { return title; }

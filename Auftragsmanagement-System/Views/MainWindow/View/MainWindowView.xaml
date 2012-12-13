@@ -17,11 +17,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding ZeigeReporting}" Content="Report" Margin="10,0,10,5" Grid.Column="0"/>
             <Button Command="{Binding ZeigeMitarbeiterverwaltung}" Content="Mitarbeiter" Margin="10,0,10,5" Grid.Column="1"/>
             <Button Command="{Binding ZeigeArtikelverwaltung}" Content="Artikel" Margin="10,0,10,5" Grid.Column="2"/>
             <Button Command="{Binding ZeigeAuftragsverwaltung}" Content="Aufträge" Margin="10,0,10,5" Grid.Column="3"/>
+            <Button Command="{Binding ZeigeKundenverwaltung}" Content="Kunden" Margin="10,0,10,5" Grid.Column="4"/>
         </Grid>
         </Grid>
 </Window>

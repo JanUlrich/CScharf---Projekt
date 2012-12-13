@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Auftragsmanagement_System.Framework;
@@ -26,8 +27,6 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
             mCustomerRepository =
                 new Repository<Customer>(
                     databaseName);
-            //TODO: hier den absoluten Verweis ersetzen
-            //mAddressRepository = new Repository<Address>(databaseName);
             mViewModel = new KundenverwaltungViewModel
             {
                 Models = new ObservableCollection<Customer>(mCustomerRepository.GetAll()),
@@ -52,22 +51,9 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
         {
             var cust = new Customer();
 
-            //hier wird die CustomerNumber gesetzt:
-            var mCustomers = mCustomerRepository.GetAll();
-            mCustomers.Sort((e1, e2) => e2.CustomerNumber.CompareTo(e1.CustomerNumber));
-            if (mCustomers.Count > 0) { cust.CustomerNumber = mCustomers[0].CustomerNumber + 1; }
-            else
-            {
-                //cust.CustomerNumber = 1;
-            }
-            //emp.Address = mAddressRepository.GetAll()[0];
-            //MessageBox.Show("neue Employee Nummer = "+ emp.EmployeeNumber); //TODO diese Debugausgabe entfernen (zuvor testen, ob richtige Nummer vergeben wird)
-
             mViewModel.SelectedModel = cust;
             mViewModel.Models.Add(mViewModel.SelectedModel);
-            mCustomerRepository.Save(mViewModel.SelectedModel);
-
-            //oder andere Möglichkeit: Die Employees werden in die Liste eingefügt und können editiert werden. Erst bei einem Druck auf Speichern werden sie gespeichert. Neu in die Liste aufgenommene werden mit Stern gekennzeichnet.
+            //mCustomerRepository.Save(mViewModel.SelectedModel);
         }
 
         private void DeleteCommandExecute(object obj)
@@ -81,7 +67,11 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
 
         private void SaveCommandExecute(object obj)
         {
-            mCustomerRepository.Save(mViewModel.SelectedModel);
+            var mModel = mViewModel.SelectedModel;
+            var adressen = new List<Address>();
+            mCustomerRepository.GetAll().ForEach((a) => adressen.Add(a.Address));
+            mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
+            mCustomerRepository.Save(mModel);
         }
         private bool SaveCommandCanExecute(object obj)
         {
