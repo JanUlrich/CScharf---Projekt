@@ -22,10 +22,10 @@ namespace Auftragsmanagement_System.Models
             var ret = new List<CompleteOrder>();
             foreach (var order1 in orders)
             {
+                var order = new CompleteOrder(order1, new List<OrderLine>());
+                ret.Add(order);
                 foreach (var orderLine in lines)
                 {
-                    var order = new CompleteOrder(order1, new List<OrderLine>());
-                    ret.Add(order);
                     if (orderLine.Order.Id == order1.Id)
                     {
                         order.Orderlines.Add(orderLine);

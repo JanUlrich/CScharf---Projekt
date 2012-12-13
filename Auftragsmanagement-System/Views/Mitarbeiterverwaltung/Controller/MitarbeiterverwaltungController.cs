@@ -64,7 +64,7 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
 
             mViewModel.SelectedModel = emp;
             mViewModel.Models.Add(mViewModel.SelectedModel);
-            mEmployeeRepository.Save(mViewModel.SelectedModel);
+            //mEmployeeRepository.Save(mViewModel.SelectedModel);
 
             //oder andere Möglichkeit: Die Employees werden in die Liste eingefügt und können editiert werden. Erst bei einem Druck auf Speichern werden sie gespeichert. Neu in die Liste aufgenommene werden mit Stern gekennzeichnet.
         }

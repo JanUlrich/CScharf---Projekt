@@ -3,29 +3,69 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="340" d:DesignWidth="515">
-    <Grid Height="335" Width="521">
-        <DataGrid AutoGenerateColumns="False" Height="266" HorizontalAlignment="Left" Margin="20,30,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="137" ItemsSource="{Binding Models}" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="216,45,0,0" Name="textBox1" VerticalAlignment="Top" Width="79" />
-        <Label Content="Mitarbeiter-Nr." Height="28" HorizontalAlignment="Left" Margin="211,22,0,0" Name="Emp_EmployeeNumber" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="337,45,0,0" Name="textBox2" VerticalAlignment="Top" Width="79" />
-        <Label Content="Titel" Height="28" HorizontalAlignment="Left" Margin="332,22,0,0" Name="Emp_Title" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="216,102,0,0" Name="textBox3" VerticalAlignment="Top" Width="79" />
-        <Label Content="Nachname" Height="28" HorizontalAlignment="Left" Margin="211,79,0,0" Name="Emp_Lastname" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="337,102,0,0" Name="textBox4" VerticalAlignment="Top" Width="79" />
-        <Label Content="Vorname" Height="28" HorizontalAlignment="Left" Margin="332,79,0,0" Name="Emp_Firstname" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="216,157,0,0" Name="textBox5" VerticalAlignment="Top" Width="79" />
-        <Label Content="Abteilung" Height="28" HorizontalAlignment="Left" Margin="211,134,0,0" Name="Emp_Area" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="337,157,0,0" Name="textBox6" VerticalAlignment="Top" Width="79" />
-        <Label Content="Land" Height="28" HorizontalAlignment="Left" Margin="332,134,0,0" Name="Cou_Name" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="216,215,0,0" Name="textBox7" VerticalAlignment="Top" Width="79" />
-        <Label Content="PLZ" Height="28" HorizontalAlignment="Left" Margin="211,192,0,0" Name="Cit_PostalCode" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="337,215,0,0" Name="textBox8" VerticalAlignment="Top" Width="79" />
-        <Label Content="Stadt" Height="28" HorizontalAlignment="Left" Margin="332,192,0,0" Name="Cit_Name" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="216,272,0,0" Name="textBox9" VerticalAlignment="Top" Width="79" />
-        <Label Content="Straße" Height="28" HorizontalAlignment="Left" Margin="211,249,0,0" Name="Adr_Street" VerticalAlignment="Top" />
-        <TextBox Height="19" HorizontalAlignment="Left" Margin="337,272,0,0" Name="textBox10" VerticalAlignment="Top" Width="79" />
-        <Label Content="Hausnummer" Height="28" HorizontalAlignment="Left" Margin="332,249,0,0" Name="Adr_StreetNumber" VerticalAlignment="Top" />
+             mc:Ignorable="d" Height="396" Width="703">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            
+            <DataGrid Margin="0" IsReadOnly="True" SelectedItem="{Binding SelectedModel}" ItemsSource="{Binding Models}" />
+
     </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*" />
+                <ColumnDefinition Width="251*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition />
+
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{Binding SelectedModel.EmployeeNumber}" Margin="5,5,5,5" Grid.Row="0" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="0" Grid.Column="0" Content="Mitarbeiter-Nr." />
+            
+            <TextBox Text="{Binding SelectedModel.Titel}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="1" Grid.Column="0" Content="Titel" />
+            
+            <TextBox Text="{Binding SelectedModel.Firstname}" Margin="5,5,5,5" Grid.Row="2" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="2" Grid.Column="0" Content="Vorname" />
+
+            <TextBox Text="{Binding SelectedModel.Lastname}" Margin="5,5,5,5" Grid.Row="3" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="3" Grid.Column="0" Content="Nachname" />
+
+            <TextBox Text="{Binding SelectedModel.IsActive}" Margin="5,5,5,5" Grid.Row="4" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="4" Grid.Column="0" Content="Im Einsatz" />
+            
+            <TextBox Text="{Binding SelectedModel.Address.Street}" Margin="5,5,5,5" Grid.Row="5" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="5" Grid.Column="0" Content="Straße" />
+
+            <TextBox Text="{Binding SelectedModel.Address.StreetNumber}" Margin="5,5,5,5" Grid.Row="6" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="6" Grid.Column="0" Content="Hausnummer" />
+
+            <TextBox Text="{Binding SelectedModel.Address.City.Name}" Margin="5,5,5,5" Grid.Row="7" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="7" Grid.Column="0" Content="Ort" />
+
+            <TextBox Text="{Binding SelectedModel.Address.City.PostalCode}" Margin="5,5,5,5" Grid.Row="8" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="8" Grid.Column="0" Content="Postleitzahl" />
+
+            <TextBox Text="{Binding SelectedModel.Address.City.Country.Name}" Margin="5,5,5,5" Grid.Row="9" Grid.Column="1"/>
+            <Label Margin="0,5,5,0" Grid.Row="9" Grid.Column="0" Content="Land" />
+
+        </Grid>
+   </Grid>
 </UserControl>
