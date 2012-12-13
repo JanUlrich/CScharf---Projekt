@@ -41,16 +41,16 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
             return ToCount.GetHashCode();
         }
 
-        public static ObservableCollection<T> SortiereNachMaxCount(List<Counter<T>> list, int anzahl)
+        public static ObservableCollection<Counter<T>> SortiereNachMaxCount(List<Counter<T>> list, int anzahl)
         {
             var ret = new List<Counter<T>>(list);
             ret.Sort((a1, a2) => a2.Count.CompareTo(a1.Count));//Die Liste sortieren. Den Artikel mit dem höchsten "Count" an oberster Stelle
             if (ret.Count > 10) ret.RemoveRange(10, ret.Count - 10);//Alle überschüssigen Elemente entfernen (wir wollen nur die ersten 10)
-            
-            var ret2 = new ObservableCollection<T>(); //Observable Collection bilden
+
+            var ret2 = new ObservableCollection<Counter<T>>(); //Observable Collection bilden
             foreach (var articleCount in ret)
             {
-                ret2.Add(articleCount.ToCount);
+                ret2.Add(articleCount);//ret2.Add(articleCount.ToCount);
             }
             
             return ret2;

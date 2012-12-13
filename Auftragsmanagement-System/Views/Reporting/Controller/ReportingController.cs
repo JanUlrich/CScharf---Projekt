@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using Auftragsmanagement_System.Framework;
 using Auftragsmanagement_System.Models;
@@ -26,20 +27,24 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
             mViewModel = new ReportingViewModel
                                   {
                                       ZeigeMitarbeiterReporting = new RelayCommand(ZeigeMitarbeiterReportingExecute),
-                                      ZeigeArtikelReporting = new RelayCommand(ZeigeArtikelReportingExecute)
+                                      ZeigeArtikelReporting = new RelayCommand(ZeigeArtikelReportingExecute),
+                                      AktualisiereReporting = new RelayCommand(AktualisiereReportingExecute)
                                   };
-
-            ZeigeArtikelReportingExecute(null);
-            ZeigeMitarbeiterReportingExecute(null);
 
             ret.DataContext = mViewModel;
             return ret;
         }
 
+        private void AktualisiereReportingExecute(object obj)
+        {
+            ZeigeArtikelReportingExecute(null);
+            ZeigeMitarbeiterReportingExecute(null);
+        }
+
         private void ZeigeArtikelReportingExecute(object obj)
         {
             ObservableCollection<OrderLine> orders = new ObservableCollection<OrderLine>(new Repository<OrderLine>(mDatabaseName).GetAll());
-            mViewModel.TopArtikel = GibMeistverkaufteArtikel(orders, new DateTime(0), DateTime.Now, null);
+            mViewModel.TopArtikel = GibMeistverkaufteArtikel(orders);
         }
 
         private void ZeigeMitarbeiterReportingExecute(object obj)
@@ -48,10 +53,14 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
                                           new Repository<OrderLine>(mDatabaseName).GetAll());
             mViewModel.TopMitarbeiter = GibBesteMitarbeiter(new Repository<Employee>(mDatabaseName).GetAll(), orders);
         }
-        
-        private ObservableCollection<Article> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders, DateTime von, DateTime bis, string area)
+
+        private ObservableCollection<Counter<Article>> GibMeistverkaufteArtikel(ObservableCollection<OrderLine> orders)
         {
             var list = new List<Counter<Article>>();
+            foreach (var orderLine in orders)
+            {
+                list.Add(new Counter<Article>(orderLine.Article));
+            }
             foreach (var order in orders)
             {
                 if(MatchesConditions(order.Order.OrderDate, order.Order.Employee.Area)){//wenn die Order in der Vorgegebenen Zeitspanne und Area war
@@ -71,27 +80,34 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
 
         }
 
-        private ObservableCollection<Employee> GibBesteMitarbeiter(List<Employee> emps, List<CompleteOrder> orders)
+        private ObservableCollection<Counter<Employee>> GibBesteMitarbeiter(List<Employee> emps, List<CompleteOrder> orders)
         {
             var list = new List<Counter<Employee>>();
+            foreach (var employee in emps)
+            {
+                list.Add(new Counter<Employee>(employee));
+            }
             foreach (var order in orders)
             {
                 foreach (var emp in emps)
                 {
                     if (order.Order.Employee.Equals(emp))
-                    {//Erzielter Umsatz der Bestellung errechnen:
-                        foreach (var orderLine in order.Orderlines)
-                        {
-                            var umsatzCount = new Counter<Employee>(emp);
-                            int umsatz = orderLine.Amount * Convert.ToInt32(orderLine.Article.Price);
-                            if (list.Contains(umsatzCount))
+                    {
+                        if (MatchesConditions(order.Order.OrderDate, order.Order.Employee.Area))
+                        {//Erzielter Umsatz der Bestellung errechnen, wenn die Conditions stimmen:
+                            foreach (var orderLine in order.Orderlines)
                             {
-                                list[list.IndexOf(umsatzCount)].Count += umsatz;
-                            }
-                            else
-                            {
-                                umsatzCount.Count += umsatz;
-                                list.Add(umsatzCount);
+                                var umsatzCount = new Counter<Employee>(emp);
+                                int umsatz = orderLine.Amount * Convert.ToInt32(orderLine.Article.Price);
+                                if (list.Contains(umsatzCount))
+                                {
+                                    list[list.IndexOf(umsatzCount)].Count += umsatz;
+                                }
+                                else
+                                {
+                                    umsatzCount.Count += umsatz;
+                                    list.Add(umsatzCount);
+                                }
                             }
                         }
                     }
@@ -111,7 +127,7 @@ namespace Auftragsmanagement_System.Views.Reporting.Controller
         {
             if (time == null) return false;
             return (time.CompareTo(mViewModel.Von) >= 0 && time.CompareTo(mViewModel.Bis) <= 0 &&
-                (area == null || area == "" || mViewModel.Area == area)) ;
+                (string.IsNullOrEmpty(area) || string.IsNullOrEmpty(mViewModel.Area) || mViewModel.Area == area));
         }
 
     }
