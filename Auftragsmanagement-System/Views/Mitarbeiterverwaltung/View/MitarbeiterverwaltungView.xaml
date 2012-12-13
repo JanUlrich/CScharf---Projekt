@@ -24,11 +24,33 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 
         <Grid>
             
-            <DataGrid Margin="0" IsReadOnly="True" SelectedItem="{Binding SelectedModel}" ItemsSource="{Binding Models}" AutoGenerateColumns="True">
-                
+            <DataGrid Margin="0" IsReadOnly="True" SelectedItem="{Binding SelectedModel}" ItemsSource="{Binding Models}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Kundennummer" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EmployeeNumber}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Vorname" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Firstname}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Nachname" Width="*" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Lastname}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
-
     </Grid>
+        
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100*" />

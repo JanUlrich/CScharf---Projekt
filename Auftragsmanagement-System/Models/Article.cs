@@ -41,7 +41,8 @@ namespace Auftragsmanagement_System.Models
             set { validTo = value; }
         }
 
-        [XmlIgnore]
+        //[XmlIgnore]
+        [XmlElement]
         public DateTime ValidFrom
         {
             get { return validFrom; }
@@ -82,7 +83,7 @@ namespace Auftragsmanagement_System.Models
             get { return id; }
             set { id = value; }
         }
-
+        /*
         public string GueltigBis
         {
             get { return ""; }
@@ -108,7 +109,7 @@ namespace Auftragsmanagement_System.Models
                 ValidFrom = objDate;
             }
         }
-
+        */
         public string Preis
         {
             get { return Price.ToString(); }

@@ -5,10 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="0,0,-418,-117">
-        <DataGrid ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" HorizontalAlignment="Left" Width="282" Margin="0,0,0,0"/>
-        <DataGrid ItemsSource="{Binding Path=SelectedOrder.OrderLines}" HorizontalAlignment="Left" Width="282" Margin="282,0,0,0"/>
-        <Label Content="{Binding SelectedOrder.Order.Description}" HorizontalAlignment="Left" Margin="606,122,0,0" VerticalAlignment="Top"/>
+    <Grid Margin="0,0,0,0">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" HorizontalAlignment="Left" Width="282" Margin="0,0,0,0">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Auftragsnummer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Order.OrderNumber}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Beschreibung" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Order.Description}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Verkäufer-Nummer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Order.Employee.EmployeeNumber}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Käufer-Nummer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Order.Customer.CustomerNumber}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid ItemsSource="{Binding Path=SelectedOrder.OrderCollection, Mode=TwoWay}" HorizontalAlignment="Left" Width="282" Margin="282,0,0,0"/>
 
     </Grid>
 </UserControl>

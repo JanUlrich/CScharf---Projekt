@@ -58,6 +58,7 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
 
         private void DeleteCommandExecute(object obj)
         {
+            mViewModel.Models.Remove(mViewModel.SelectedModel);
             mCustomerRepository.Delete(mViewModel.SelectedModel);
         }
         private bool DeleteCommandCanExecute(object obj)

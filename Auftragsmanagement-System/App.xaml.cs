@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using Auftragsmanagement_System.Framework;
@@ -18,9 +19,12 @@ namespace Auftragsmanagement_System
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            var path = Assembly.GetExecutingAssembly().Location + @"Database\CompanyManagementSystem.db"; //TODO: Das hier tut net... ist nicht der absolute Pfad sonder der Pfad zur exe
+
+            
+
             base.OnStartup(e);
-            string databaseName =
-                @"F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\Database\CompanyManagementSystem.db";
+            string databaseName = path;
             new MainWindowController().Initialize(databaseName);
         }
     }

@@ -38,3 +38,4 @@ F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagemen
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Kundenverwaltung\View\KundenverwaltungView.baml
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Kundenverwaltung\View\KundenverwaltungView.g.cs
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Auftragsmanagement-System_MarkupCompile.lref
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\bin\Debug\Database\CompanyManagementSystem.db

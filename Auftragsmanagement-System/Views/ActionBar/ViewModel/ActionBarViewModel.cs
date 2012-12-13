@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Auftragsmanagement_System.Framework;
 
 namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
@@ -15,6 +16,10 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         private string _Command3Text;
         private string _Command4Text;
 
+        private Visibility _Command1Show = Visibility.Hidden;
+        private Visibility _Command2Show = Visibility.Hidden;
+        private Visibility _Command3Show = Visibility.Hidden;
+        private Visibility _Command4Show = Visibility.Hidden;
 
         public ICommand Command3
         {
@@ -37,31 +42,57 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         public string Command1Text
         {
             get { return _Command1Text; }
-            set { _Command1Text = value; }
+            set { _Command1Text = value;
+            Command1Show = Visibility.Visible;
+            }
         }
 
         public string Command2Text
         {
             get { return _Command2Text; }
-            set { _Command2Text = value; }
+            set { _Command2Text = value; Command2Show = Visibility.Visible; }
         }
 
         public string Command3Text
         {
             get { return _Command3Text; }
-            set { _Command3Text = value; }
+            set { _Command3Text = value; Command3Show = Visibility.Visible; }
         }
 
         public ICommand Command4
         {
             get { return _Command4; }
-            set { _Command4 = value; }
+            set { _Command4 = value;  }
         }
 
         public string Command4Text
         {
             get { return _Command4Text; }
-            set { _Command4Text = value; }
+            set { _Command4Text = value; Command4Show = Visibility.Visible; }
+        }
+
+        public Visibility Command1Show
+        {
+            get { return _Command1Show; }
+            set { _Command1Show = value; }
+        }
+
+        public Visibility Command2Show
+        {
+            get { return _Command2Show; }
+            set { _Command2Show = value; }
+        }
+
+        public Visibility Command3Show
+        {
+            get { return _Command3Show; }
+            set { _Command3Show = value; }
+        }
+
+        public Visibility Command4Show
+        {
+            get { return _Command4Show; }
+            set { _Command4Show = value; }
         }
     }
 }

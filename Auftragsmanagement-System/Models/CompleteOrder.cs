@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Remotion.Linq.Collections;
 
 namespace Auftragsmanagement_System.Models
 {
@@ -10,6 +11,7 @@ namespace Auftragsmanagement_System.Models
     {
         private Order order;
         private List<OrderLine> orderlines;
+        private ObservableCollection<OrderLine> orderCollection; 
 
         public CompleteOrder(Order ord, List<OrderLine> lines)
         {
@@ -46,6 +48,20 @@ namespace Auftragsmanagement_System.Models
         {
             get { return orderlines; }
             set { orderlines = value; }
+        }
+
+        public ObservableCollection<OrderLine> OrderCollection
+        {
+            get
+            {
+                var ret = new ObservableCollection<OrderLine>();
+                foreach (var orderline in Orderlines)
+                {
+                    ret.Add(orderline);
+                }
+                return ret;
+            }
+            set { Orderlines = value.ToList(); }
         }
     }
 }
