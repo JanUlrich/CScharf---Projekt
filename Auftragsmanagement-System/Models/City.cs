@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Auftragsmanagement_System.Models
 {
+
+    class WrongCityPostalCodeCombination : Exception
+    {
+         //
+    }
+
     class City
     {
         private Int32 id;
@@ -17,7 +23,12 @@ namespace Auftragsmanagement_System.Models
         {
             foreach (var city in städte)
             {
-                if (stadt.PostalCode == city.PostalCode || stadt.Name.Equals(city.Name)) return city;
+                if (stadt.PostalCode.Equals(city.PostalCode) && !stadt.Name.Equals(city.Name) ||
+                    !stadt.PostalCode.Equals(city.PostalCode) && stadt.Name.Equals(city.Name))
+                {
+                    throw new WrongCityPostalCodeCombination();
+                }
+                if (stadt.PostalCode == city.PostalCode && stadt.Name.Equals(city.Name)) return city;
             }
             return stadt;
         }

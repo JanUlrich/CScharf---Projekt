@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -72,6 +73,7 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
 
         private void DeleteCommandExecute(object obj)
         {
+            //TODO: Beim Löschen dürfen keine Städte und länder gelöscht werden, die noch benutzt werden.
             mEmployeeRepository.Delete(mViewModel.SelectedModel);
             mViewModel.Models.Remove(mViewModel.SelectedModel);
         }
@@ -84,9 +86,18 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         {
             var mModel = mViewModel.SelectedModel;
             var adressen = new List<Address>();
+            string fehler = "";
             mEmployeeRepository.GetAll().ForEach((a) => adressen.Add(a.Address));
-            mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
-            mEmployeeRepository.Save(mModel);
+            try
+            {
+                mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
+                mEmployeeRepository.Save(mModel);
+            }
+            catch (WrongCityPostalCodeCombination)
+            {
+                fehler = "Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt";
+            }
+            mViewModel.Fehlermeldung = fehler;
         }
         private bool SaveCommandCanExecute(object obj)
         {

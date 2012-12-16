@@ -19,7 +19,7 @@ namespace Auftragsmanagement_System
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var path = Assembly.GetExecutingAssembly().Location + @"Database\CompanyManagementSystem.db"; //TODO: Das hier tut net... ist nicht der absolute Pfad sonder der Pfad zur exe
+            var path = Environment.CurrentDirectory + @"\Database\CompanyManagementSystem.db"; //TODO: Das hier tut net... ist nicht der absolute Pfad sonder der Pfad zur exe
 
             
 

@@ -9,6 +9,7 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.ViewModel
     {
         private ObservableCollection<Employee> mModels;
         private Employee mSelectedModel;
+        private string _fehlermeldung;
 
         public Employee SelectedModel
         {
@@ -32,7 +33,11 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.ViewModel
             }
         }
 
-
-
+        public string Fehlermeldung
+        {
+            get { return _fehlermeldung; }
+            set { _fehlermeldung = value; 
+            OnPropertyChanged("Fehlermeldung");}
+        }
     }
 }
