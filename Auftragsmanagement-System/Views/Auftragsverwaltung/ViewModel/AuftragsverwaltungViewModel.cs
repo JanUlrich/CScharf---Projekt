@@ -14,6 +14,7 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.ViewModel
     {
         private ObservableCollection<CompleteOrder> orders;
         private CompleteOrder selectedOrder;
+        private UserControl editControl;
 
         public ObservableCollection<CompleteOrder> Orders
         {
@@ -27,6 +28,12 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.ViewModel
             get { return selectedOrder; }
             set { selectedOrder = value; 
             OnPropertyChanged("SelectedOrder");}
+        }
+
+        public UserControl EditControl
+        {
+            get { return editControl; }
+            set { editControl = value; }
         }
     }
 }

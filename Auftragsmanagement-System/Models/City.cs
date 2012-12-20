@@ -9,7 +9,12 @@ namespace Auftragsmanagement_System.Models
 
     class WrongCityPostalCodeCombination : Exception
     {
-         //
+        public string Message;
+
+        public WrongCityPostalCodeCombination(string msg)
+        {
+            Message = msg;
+        }
     }
 
     class City
@@ -26,7 +31,7 @@ namespace Auftragsmanagement_System.Models
                 if (stadt.PostalCode.Equals(city.PostalCode) && !stadt.Name.Equals(city.Name) ||
                     !stadt.PostalCode.Equals(city.PostalCode) && stadt.Name.Equals(city.Name))
                 {
-                    throw new WrongCityPostalCodeCombination();
+                    throw new WrongCityPostalCodeCombination("Stadt mit PLZ: "+city.PostalCode+" Name: "+city.Name+" ist bereits vorhanden.");
                 }
                 if (stadt.PostalCode == city.PostalCode && stadt.Name.Equals(city.Name)) return city;
             }

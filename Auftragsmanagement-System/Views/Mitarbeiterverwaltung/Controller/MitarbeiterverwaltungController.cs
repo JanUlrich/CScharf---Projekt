@@ -20,14 +20,17 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         private ActionBarViewModel mActionBarViewModel;
         private Repository<Employee> mEmployeeRepository;
         //private Repository<Address> mAddressRepository;
+        private string mDatabaseName;
 
         public UserControl Initialize(ActionBarView actionBar, string databaseName)
         {
+            mDatabaseName = databaseName;
+
             UserControl view = new MitarbeiterverwaltungView();
             
             mEmployeeRepository =
                 new Repository<Employee>(
-                    databaseName);
+                    mDatabaseName);
                 //TODO: hier den absoluten Verweis ersetzen
             //mAddressRepository = new Repository<Address>(databaseName);
             mViewModel = new MitarbeiterverwaltungViewModel
@@ -86,18 +89,20 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
         {
             var mModel = mViewModel.SelectedModel;
             var adressen = new List<Address>();
-            string fehler = "";
-            mEmployeeRepository.GetAll().ForEach((a) => adressen.Add(a.Address));
+            //string fehler = "";
+            var addressRepository = new Repository<Address>(mDatabaseName);
+            adressen = addressRepository.GetAll();
             try
             {
                 mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
                 mEmployeeRepository.Save(mModel);
             }
-            catch (WrongCityPostalCodeCombination)
+            catch (WrongCityPostalCodeCombination excp)
             {
-                fehler = "Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt";
+                //fehler = "Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt";
+                MessageBox.Show("Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt!\n" + excp.Message);
             }
-            mViewModel.Fehlermeldung = fehler;
+            //mViewModel.Fehlermeldung = fehler;
         }
         private bool SaveCommandCanExecute(object obj)
         {

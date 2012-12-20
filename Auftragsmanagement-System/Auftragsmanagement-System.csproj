@@ -93,6 +93,10 @@
     <Compile Include="Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml.cs">
       <DependentUpon>ArtikelverwaltungView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Auftragsverwaltung\OrderEdit\OrderEditView.xaml.cs">
+      <DependentUpon>OrderEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auftragsverwaltung\OrderEdit\OrderEditViewModel.cs" />
     <Compile Include="Views\Kundenverwaltung\Controller\KundenverwaltungController.cs" />
     <Compile Include="Views\Kundenverwaltung\ViewModel\KundenverwaltungViewModel.cs" />
     <Compile Include="Views\Kundenverwaltung\View\KundenverwaltungView.xaml.cs">
@@ -144,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Auftragsverwaltung\OrderEdit\OrderEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,7 +200,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Database\CompanyManagementSystem.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Database\CompanyManagementSystem_leer.db" />
     <None Include="Properties\Settings.settings">

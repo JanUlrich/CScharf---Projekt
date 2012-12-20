@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Xml.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,11 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
     {
         private Repository<Article> mArticleRepository;
         private ArtikelverwaltungViewModel mViewModel;
+        private string mDatabaseName;
 
         public UserControl Initialize(ActionBarView actionBar, string databaseName)
         {
+            mDatabaseName = databaseName;
             UserControl view = new ArtikelverwaltungView();
 
             mArticleRepository =
@@ -83,15 +86,27 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
         private void ImportCommandExecute(object obj)
         {
             string Pfad = string.Empty;
-
+            Article import;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
             Nullable<bool> result = openFileDialog1.ShowDialog();
             if (result.Value == true){
                 Pfad = openFileDialog1.FileName;
-                mViewModel.SelectedArticle = ImportiereAuftrag(Pfad);
-            }
+                //mViewModel.SelectedArticle = ImportiereAuftrag(Pfad);
+                import = ImportiereAuftrag(Pfad);
             
+            var rep = new Repository<Article>(mDatabaseName).GetAll();
+            if (rep.Contains(import))
+            {
+                MessageBox.Show("Artikel mit Artikelnummer: " + import.ArticleNumber +
+                                " ist bereits vorhanden");
+            }
+            else
+            {
+                mViewModel.Articles.Add(import);
+                mArticleRepository.Save(import);
+            }
+            }
         }
 
         private Article ImportiereAuftrag(string file)
