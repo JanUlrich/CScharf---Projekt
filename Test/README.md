@@ -1,4 +1,0 @@
-CScharf---Projekt
-=================
-
-Schulprojekt
