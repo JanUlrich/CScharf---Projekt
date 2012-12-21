@@ -67,11 +67,12 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
 
             </Grid.RowDefinitions>
 
             <TextBox Text="{Binding SelectedModel.CustomerNumber}" Margin="5,5,5,5" Grid.Row="0" Grid.Column="1"/>
-            <Label Margin="0,5,5,0" Grid.Row="0" Grid.Column="0" Content="Kunden-Nr." />
+            <Label Margin="0,5,5,0" Grid.Row="0" Grid.Column="0" Content="Mitarbeiter-Nr." />
 
             <ComboBox ItemsSource="{Binding Source={StaticResource TitleEnum}}" SelectedItem="{Binding Path=SelectedModel.Title}" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1"/>
             <Label Margin="0,5,5,0" Grid.Row="1" Grid.Column="0" Content="Titel" />
@@ -99,6 +100,8 @@
 
             <TextBox Text="{Binding SelectedModel.Address.City.Country.Name}" Margin="5,5,5,5" Grid.Row="9" Grid.Column="1"/>
             <Label Margin="0,5,5,0" Grid.Row="9" Grid.Column="0" Content="Land" />
+
+            <Label Margin="0,5,5,0" Grid.Row="10" Grid.Column="0" Content="{Binding Fehlermeldung}" Grid.ColumnSpan="2" />
 
         </Grid>
     </Grid>

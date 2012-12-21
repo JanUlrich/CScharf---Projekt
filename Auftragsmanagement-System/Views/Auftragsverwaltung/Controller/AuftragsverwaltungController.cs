@@ -14,6 +14,7 @@ using Auftragsmanagement_System.Views.ActionBar.ViewModel;
 using Auftragsmanagement_System.Views.Auftragsverwaltung.OrderEdit.Controller;
 using Auftragsmanagement_System.Views.Auftragsverwaltung.View;
 using Auftragsmanagement_System.Views.Auftragsverwaltung.ViewModel;
+using Uebung_12.Framework;
 
 namespace Auftragsmanagement_System.Views.Auftragsverwaltung.Controller
 {
@@ -43,7 +44,16 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.Controller
 
             actionBar.DataContext = new ActionBarViewModel
                                         {
-                                            Command1Text = "Neuer Auftrag"
+                                            Command1Text = "Neuer Auftrag",
+                                            Command1 = new RelayCommand(AddOrderExecute),
+                                            Command2Text = "Neue Auftragsposition",
+                                            Command2 = new RelayCommand(AddPositionExecute),
+                                            Command3Text = "Änderungen Speichern",
+                                            Command3 = new RelayCommand(SaveCommandExecute),
+                                            Command5Text = "Position löschen",
+                                            Command5 = new RelayCommand(DeletePositionExecute),
+                                            Command4Text = "Auftrag löschen",
+                                            Command4 = new RelayCommand(DeleteOrderExecute)
                                         };
 
 
@@ -66,6 +76,63 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.Controller
         private void Anzeigen(List<CompleteOrder> orders)
         {
             mViewModel.Orders = new ObservableCollection<CompleteOrder>(orders);
+        }
+
+        private void AddOrderExecute(object obj)
+        {
+            var order = mViewModel.SelectedOrder.Order;
+            var orders = mOrderRepository.GetAll();
+            
+            int orderNum = 1000;
+            do
+            {
+                orderNum++;
+                order.OrderNumber = order.OrderDate.Year + "-" + orderNum;
+
+            } while (orders.Contains(order));
+
+            
+            //mOrderRepository.Save(order);                
+            
+        }
+        private void AddPositionExecute(object obj)
+        {
+            var orderLine = new OrderLine();
+            
+            int orderPos = 100;
+            do
+            {
+                orderPos+=100;
+                orderLine.Position = orderPos;
+
+            } while (mViewModel.SelectedOrder.Orderlines.TrueForAll((a)=>a.Position!=orderPos));
+
+            mViewModel.SelectedOrder.Orderlines.Add(orderLine);
+            orderLine.Order = mViewModel.SelectedOrder.Order;
+
+            //mOrderlineRepository.Save(orderLine);
+        }
+        private void SaveCommandExecute(object obj)
+        {
+            mOrderRepository.Save(mViewModel.SelectedOrder.Order);
+            mViewModel.SelectedOrder.Orderlines.ForEach((a)=>{mOrderlineRepository.Save(a);});
+        }
+        private void DeleteOrderExecute(object obj)
+        {
+            mViewModel.SelectedOrder.Orderlines.ForEach((a) => { mOrderlineRepository.Delete(a); });
+            mOrderRepository.Delete(mViewModel.SelectedOrder.Order);
+
+            mViewModel.SelectedOrderLine = null;
+            mViewModel.SelectedOrder.OrderCollection = null;
+            mViewModel.Orders.Remove(mViewModel.SelectedOrder);
+            mViewModel.SelectedOrder = null;
+        }
+        private void DeletePositionExecute(object obj)
+        {
+            mOrderlineRepository.Delete(mViewModel.SelectedOrderLine);
+            mViewModel.SelectedOrder.Orderlines.Remove(mViewModel.SelectedOrderLine);
+            mViewModel.SelectedOrder.OrderCollection = mViewModel.SelectedOrder.OrderCollection;
+            mViewModel.SelectedOrderLine = null;
         }
     }
 }

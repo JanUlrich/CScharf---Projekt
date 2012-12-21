@@ -21,7 +21,7 @@ namespace Auftragsmanagement_System.Mappings
             Map(x => x.CustomerNumber).Length(50).Not.Nullable();
             Map(x => x.IsActive).Not.Nullable();
             //Id(x => x.Address.Id).Column("AddressId").Unique().Not.Nullable();
-            References<Address>(x => x.Address, "AddressId").Not.Nullable().Unique().Cascade.All();
+            References<Address>(x => x.Address, "AddressId").Not.Nullable().Unique().Cascade.SaveUpdate();
 
         }
     }

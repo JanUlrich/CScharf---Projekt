@@ -17,6 +17,18 @@ namespace Auftragsmanagement_System.Models
         private bool isActive;
         private Address address;
 
+        public Customer()
+        {
+            //id = 0;
+            CustomerNumber = "";
+            Name = "";
+            Firstname = "";
+            Title = Title.keinTitel;
+            IsActive = false;
+            Address = new Address();
+            Type = 0;
+        }
+
         public Address Address
         {
             get { return address; }
@@ -77,6 +89,11 @@ namespace Auftragsmanagement_System.Models
         {
             if (!(obj is Customer)) return false;
             return ((Customer)obj).CustomerNumber == CustomerNumber;
+        }
+
+        public override int GetHashCode()
+        {
+            return CustomerNumber.GetHashCode();
         }
 
         public override string ToString()

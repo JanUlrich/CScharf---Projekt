@@ -69,7 +69,8 @@ namespace Auftragsmanagement_System.Views.Auftragsverwaltung.ViewModel
         {
             get { return selectedOrderLine; }
             set { selectedOrderLine = value; 
-            OnPropertyChanged("SelectedOrderLine");}
+            OnPropertyChanged("SelectedOrderLine");
+            }
         }
 
         public CollectionView Customers

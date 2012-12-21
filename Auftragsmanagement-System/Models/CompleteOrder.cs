@@ -54,6 +54,7 @@ namespace Auftragsmanagement_System.Models
         {
             get
             {
+                if (Orderlines == null) return null;
                 var ret = new ObservableCollection<OrderLine>();
                 foreach (var orderline in Orderlines)
                 {
@@ -61,7 +62,9 @@ namespace Auftragsmanagement_System.Models
                 }
                 return ret;
             }
-            set { Orderlines = value.ToList(); }
+            set { if(value!=null)Orderlines = value.ToList();
+                if (value == null) Orderlines = null;
+            }
         }
     }
 }

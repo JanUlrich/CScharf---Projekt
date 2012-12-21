@@ -18,8 +18,8 @@ namespace Auftragsmanagement_System.Mappings
             Map(x => x.Position).Length(500);
             //Map(x => x.AddressId);
             //HasMany<Order>(x => x.Order).Inverse().Cascade.SaveUpdate().KeyColumn("");
-            References<Article>(x => x.Article, "ArticleId").Cascade.All();
-            References<Order>(x => x.Order, "OrderId").Cascade.All();
+            References<Article>(x => x.Article, "ArticleId").Cascade.None();
+            References<Order>(x => x.Order, "OrderId").Cascade.None();
 
         }
     }

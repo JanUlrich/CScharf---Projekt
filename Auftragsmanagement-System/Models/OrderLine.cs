@@ -14,6 +14,14 @@ namespace Auftragsmanagement_System.Models
         private Order order;
         private Article article;
 
+        public OrderLine()
+        {
+            amount = 0;
+            position = 100;
+            order = new Order();
+            article = new Article();
+        }
+
         public int Id
         {
             get { return id; }

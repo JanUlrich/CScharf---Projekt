@@ -17,6 +17,14 @@ namespace Auftragsmanagement_System.Models
         private Employee employee;
         private Customer customer;
         
+        public Order()
+        {
+            employee = new Employee();
+            customer = new Customer();
+            description = "";
+            OrderDate = new DateTime();
+        }
+
         public int Id
         {
             get { return id; }
@@ -57,6 +65,11 @@ namespace Auftragsmanagement_System.Models
         {
             get { return customer; }
             set { customer = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (obj is Order && ((Order) obj).OrderNumber.Equals(this.OrderNumber));
         }
     }
 }

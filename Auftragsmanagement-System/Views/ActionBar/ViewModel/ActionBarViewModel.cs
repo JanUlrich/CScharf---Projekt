@@ -10,16 +10,19 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         private ICommand _Command2;
         private ICommand _Command3;
         private ICommand _Command4;
+        private ICommand _Command5;
 
         private string _Command1Text;
         private string _Command2Text;
         private string _Command3Text;
         private string _Command4Text;
+        private string _Command5Text;
 
         private Visibility _Command1Show = Visibility.Hidden;
         private Visibility _Command2Show = Visibility.Hidden;
         private Visibility _Command3Show = Visibility.Hidden;
         private Visibility _Command4Show = Visibility.Hidden;
+        private Visibility _Command5Show = Visibility.Hidden;
 
         public ICommand Command3
         {
@@ -93,6 +96,24 @@ namespace Auftragsmanagement_System.Views.ActionBar.ViewModel
         {
             get { return _Command4Show; }
             set { _Command4Show = value; }
+        }
+
+        public Visibility Command5Show
+        {
+            get { return _Command5Show; }
+            set { _Command5Show = value; }
+        }
+
+        public ICommand Command5
+        {
+            get { return _Command5; }
+            set { _Command5 = value; }
+        }
+
+        public string Command5Text
+        {
+            get { return _Command5Text; }
+            set { _Command5Text = value; Command5Show = Visibility.Visible; }
         }
     }
 }

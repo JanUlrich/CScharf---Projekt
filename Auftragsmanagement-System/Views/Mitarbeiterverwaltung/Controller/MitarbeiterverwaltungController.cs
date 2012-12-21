@@ -76,7 +76,6 @@ namespace Auftragsmanagement_System.Mitarbeiterverwaltung.Controller
 
         private void DeleteCommandExecute(object obj)
         {
-            //TODO: Beim Löschen dürfen keine Städte und länder gelöscht werden, die noch benutzt werden.
             mEmployeeRepository.Delete(mViewModel.SelectedModel);
             mViewModel.Models.Remove(mViewModel.SelectedModel);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,15 +19,17 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
         private KundenverwaltungViewModel mViewModel;
         private ActionBarViewModel mActionBarViewModel;
         private Repository<Customer> mCustomerRepository;
+        private string mDatabaseName;
         //private Repository<Address> mAddressRepository;
 
         public UserControl Initialize(ActionBarView actionBar, string databaseName)
         {
+            mDatabaseName = databaseName;
             UserControl view = new KundenverwaltungView();
 
             mCustomerRepository =
                 new Repository<Customer>(
-                    databaseName);
+                    mDatabaseName);
             mViewModel = new KundenverwaltungViewModel
             {
                 Models = new ObservableCollection<Customer>(mCustomerRepository.GetAll()),
@@ -58,21 +61,40 @@ namespace Auftragsmanagement_System.Kundenverwaltung2.Controller
 
         private void DeleteCommandExecute(object obj)
         {
-            mViewModel.Models.Remove(mViewModel.SelectedModel);
+            
             mCustomerRepository.Delete(mViewModel.SelectedModel);
+            mViewModel.Models.Remove(mViewModel.SelectedModel);
         }
         private bool DeleteCommandCanExecute(object obj)
         {
-            return mViewModel.SelectedModel != null;
+            return (mViewModel.SelectedModel!=null)
+            ;
         }
 
         private void SaveCommandExecute(object obj)
         {
             var mModel = mViewModel.SelectedModel;
             var adressen = new List<Address>();
-            mCustomerRepository.GetAll().ForEach((a) => adressen.Add(a.Address));
-            mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
-            mCustomerRepository.Save(mModel);
+            //string fehler = "";
+            var addressRepository = new Repository<Address>(mDatabaseName);
+            adressen = addressRepository.GetAll();
+            try
+            {
+                mModel.Address = Address.KontrolliereMitDatenbank(mModel.Address, adressen);
+                try
+                {
+                    mCustomerRepository.Save(mModel);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Kundennummer ist bereits vorhanden");
+                }
+            }
+            catch (WrongCityPostalCodeCombination excp)
+            {
+                //fehler = "Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt";
+                MessageBox.Show("Fehler: Die Kombination aus Postleitzahl und Städtenamen ist nicht korrekt!\n" + excp.Message);
+            }
         }
         private bool SaveCommandCanExecute(object obj)
         {
