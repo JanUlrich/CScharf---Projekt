@@ -93,10 +93,10 @@
     <Compile Include="Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml.cs">
       <DependentUpon>ArtikelverwaltungView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Auftragsverwaltung\OrderEdit\OrderEditView.xaml.cs">
+    <Compile Include="Views\Auftragsverwaltung\OrderEdit\Controller\OrderEditControl.cs" />
+    <Compile Include="Views\Auftragsverwaltung\OrderEdit\View\OrderEditView.xaml.cs">
       <DependentUpon>OrderEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Auftragsverwaltung\OrderEdit\OrderEditViewModel.cs" />
     <Compile Include="Views\Kundenverwaltung\Controller\KundenverwaltungController.cs" />
     <Compile Include="Views\Kundenverwaltung\ViewModel\KundenverwaltungViewModel.cs" />
     <Compile Include="Views\Kundenverwaltung\View\KundenverwaltungView.xaml.cs">
@@ -148,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Auftragsverwaltung\OrderEdit\OrderEditView.xaml">
+    <Page Include="Views\Auftragsverwaltung\OrderEdit\View\OrderEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,7 +212,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\Controller\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

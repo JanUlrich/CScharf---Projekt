@@ -39,5 +39,5 @@ F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagemen
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Kundenverwaltung\View\KundenverwaltungView.g.cs
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Auftragsmanagement-System_MarkupCompile.lref
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\bin\Debug\Database\CompanyManagementSystem.db
-F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Auftragsverwaltung\OrderEdit\OrderEditView.baml
-F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Auftragsverwaltung\OrderEdit\OrderEditView.g.cs
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Auftragsverwaltung\OrderEdit\View\OrderEditView.baml
+F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\obj\Debug\Views\Auftragsverwaltung\OrderEdit\View\OrderEditView.g.cs

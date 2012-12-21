@@ -44,7 +44,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid ItemsSource="{Binding Path=SelectedOrder.OrderCollection, Mode=TwoWay}" AutoGenerateColumns="False" Grid.Column="1" Margin="0,0,0,0">
+            <DataGrid ItemsSource="{Binding Path=SelectedOrder.OrderCollection, Mode=TwoWay}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False" Grid.Column="1" Margin="0,0,0,0">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Position" Width="*" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
@@ -71,7 +71,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-        <ContentControl Grid.Column="2"></ContentControl>
+        <ContentControl Content="{Binding EditControl}" Grid.Column="2"></ContentControl>
         
         </Grid>
     

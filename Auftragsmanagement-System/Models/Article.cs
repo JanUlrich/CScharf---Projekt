@@ -34,7 +34,7 @@ namespace Auftragsmanagement_System.Models
             validTo = DateTime.MaxValue;
         }
 
-        [XmlIgnore]
+        [XmlElement("GueltigBis")]
         public DateTime ValidTo
         {
             get { return validTo; }
@@ -42,7 +42,7 @@ namespace Auftragsmanagement_System.Models
         }
 
         //[XmlIgnore]
-        [XmlElement]
+        [XmlElement("GueltigAb")]
         public DateTime ValidFrom
         {
             get { return validFrom; }
@@ -126,6 +126,11 @@ namespace Auftragsmanagement_System.Models
         {
             if (!(obj is Article)) return false;
             return ((Article)obj).ArticleNumber == ArticleNumber;
+        }
+
+        public override string ToString()
+        {
+            return ArticleNumber;
         }
 
     }

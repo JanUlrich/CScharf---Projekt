@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Auftragsmanagement_System.Views.Auftragsverwaltung.ViewModel;
 
-namespace Auftragsmanagement_System.Views.Auftragsverwaltung.OrderEdit
+namespace Auftragsmanagement_System.Views.Auftragsverwaltung.OrderEdit.View
 {
     /// <summary>
     /// Interaktionslogik für OrderEditView.xaml

@@ -76,7 +76,7 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
 
         private void SaveCommandExecute(object obj)
         {
-            mArticleRepository.Save(mViewModel.SelectedArticle);
+            SpeichereArtikel(mViewModel.SelectedArticle);
         }
         private bool SaveCommandCanExecute(object obj)
         {
@@ -95,18 +95,28 @@ namespace Auftragsmanagement_System.Views.Artikelverwaltung.Controller
                 //mViewModel.SelectedArticle = ImportiereAuftrag(Pfad);
                 import = ImportiereAuftrag(Pfad);
             
-            var rep = new Repository<Article>(mDatabaseName).GetAll();
-            if (rep.Contains(import))
+            if (SpeichereArtikel(import))
             {
-                MessageBox.Show("Artikel mit Artikelnummer: " + import.ArticleNumber +
+                mViewModel.Articles.Add(import);
+            }
+            }
+        }
+
+        private bool SpeichereArtikel(Article art)
+        {
+            var rep = new Repository<Article>(mDatabaseName).GetAll();
+            if (rep.Contains(art))
+            {
+                MessageBox.Show("Artikel mit Artikelnummer: " + art.ArticleNumber +
                                 " ist bereits vorhanden");
+                return false;
             }
             else
             {
-                mViewModel.Articles.Add(import);
-                mArticleRepository.Save(import);
+                mArticleRepository.Save(art);
+                return true;
             }
-            }
+            
         }
 
         private Article ImportiereAuftrag(string file)

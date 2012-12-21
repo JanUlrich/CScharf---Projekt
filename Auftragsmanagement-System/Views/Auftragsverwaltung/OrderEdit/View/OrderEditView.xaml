@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Auftragsmanagement_System.Views.Auftragsverwaltung.OrderEdit.View.OrderEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Bestelldatum" Grid.Column="0" Grid.Row="0" Margin="3"  />
+        <DatePicker SelectedDate="{Binding SelectedOrder.Order.Bestelldatum}" Margin="3" Grid.Column="1" />
+        
+        <Label Content="Beschreibung" Grid.Column="0" Grid.Row="1" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedOrder.Order.Description}" Margin="5"/>
+        
+        <Label Content="Verkäufer" Grid.Column="0" Grid.Row="2" Margin="3" />
+        <ComboBox DisplayMemberPath="" SelectedValue="{Binding SelectedOrder.Order.Employee}" 
+                  SelectedValuePath=""
+                  ItemsSource="{Binding Employees}" Grid.Column="1" Grid.Row="2" Margin="5" />
+        
+        <Label Content="Kunde" Grid.Column="0" Grid.Row="3" Margin="3" />
+        <ComboBox DisplayMemberPath="" SelectedValue="{Binding SelectedOrder.Order.Customer}" 
+                  SelectedValuePath=""
+                  ItemsSource="{Binding Customers}" Grid.Column="1" Grid.Row="3" Margin="5"/>
+
+
+        <Label Content="Ausgewählte Auftragsposition:" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5" Margin="3" />
+
+        <Label Content="Position" Grid.Column="0" Grid.Row="6" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SelectedOrderLine.Position}" Margin="5"/>
+
+        <Label Content="Artikel" Grid.Column="0" Grid.Row="7" Margin="3" />
+        <ComboBox DisplayMemberPath="" SelectedValue="{Binding SelectedOrderLine.Article}" 
+                  SelectedValuePath=""
+                  ItemsSource="{Binding Articles}" Grid.Column="1" Grid.Row="7" Margin="5"/>
+        
+        <Label Content="Anzahl" Grid.Column="0" Grid.Row="8" Margin="3" />
+        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding SelectedOrderLine.Amount}" Margin="5"/>
+        
+    </Grid>
+</UserControl>

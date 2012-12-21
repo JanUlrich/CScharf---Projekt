@@ -133,5 +133,9 @@ namespace Auftragsmanagement_System.Models
             return EmployeeNumber;
         }
 
+        public override string ToString()
+        {
+            return EmployeeNumber + ", "+Firstname+" "+Lastname;
+        }
     }
 }

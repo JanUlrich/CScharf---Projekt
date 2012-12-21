@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\AndiStuff\Visual Studio Workspace\Auftragsmanagement-System\Auftragsmanagement-System\App.xaml
-8721698240
+82010507910
 7-133668207
-551777826534
+55254108455
 151587014198
-Views\ActionBar\View\ActionBarView.xaml;Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml;Views\Auftragsverwaltung\OrderEdit\OrderEditView.xaml;Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml;Views\Kundenverwaltung\View\KundenverwaltungView.xaml;Views\MainWindow\View\MainWindowView.xaml;Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml;Views\Reporting\View\ReportingView.xaml;
+Views\ActionBar\View\ActionBarView.xaml;Views\Artikelverwaltung\View\ArtikelverwaltungView.xaml;Views\Auftragsverwaltung\OrderEdit\View\OrderEditView.xaml;Views\Auftragsverwaltung\View\AuftragsverwaltungView.xaml;Views\Kundenverwaltung\View\KundenverwaltungView.xaml;Views\MainWindow\View\MainWindowView.xaml;Views\Mitarbeiterverwaltung\View\MitarbeiterverwaltungView.xaml;Views\Reporting\View\ReportingView.xaml;
 
 False
 

@@ -35,6 +35,12 @@ namespace Auftragsmanagement_System.Models
             set { orderDate = value; }
         }
 
+        public DateTime Bestelldatum
+        {
+            get { return OrderDate.Date; }
+            set { OrderDate = value; }
+        }
+
         public string Description
         {
             get { return description; }

@@ -78,5 +78,10 @@ namespace Auftragsmanagement_System.Models
             if (!(obj is Customer)) return false;
             return ((Customer)obj).CustomerNumber == CustomerNumber;
         }
+
+        public override string ToString()
+        {
+            return CustomerNumber + ", " + Firstname + " " + Name;
+        }
     }
 }

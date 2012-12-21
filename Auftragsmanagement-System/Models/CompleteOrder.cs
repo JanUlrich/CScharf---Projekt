@@ -7,7 +7,7 @@ using Remotion.Linq.Collections;
 
 namespace Auftragsmanagement_System.Models
 {
-    class CompleteOrder //TODO: Diese Klasse wird möglicherweise nicht gebraucht und kann gelöscht werden...
+    class CompleteOrder
     {
         private Order order;
         private List<OrderLine> orderlines;
